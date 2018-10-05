@@ -1,9 +1,11 @@
 package gsb.modele.dao;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import gsb.modele.Medicament;
+import gsb.modele.dao.ConnexionMySql;
 
 public class MedicamentDao {
 
@@ -28,13 +30,23 @@ public class MedicamentDao {
 		
 	}
 	
-	public static void SupprimerMedicament(){
+	public static int SupprimerMedicament(Medicament medicament){
 		
-		
-		
+		int result = 0;
+		String requette = "DELETE FROM MEDICAMENT WHERE MED_DEPOTLEGAL=" + medicament.getDepotLegal();
+		result = ConnexionMySql.execReqMaj(requette);
+		ConnexionMySql.fermerConnexionBd();
+		return result;		
 	}
 	
-	
+	public static int AjouterMedicament(Medicament medicament){
+		
+		int result = 0;
+		String requette = "INSERT INTO `MEDICAMENT` (`MED_DEPOTLEGAL`, `MED_NOMCOMMERCIAL`, `MED_COMPOSITION`, `MED_EFFETS`, `MED_CONTREINDIC`, `MED_PRIXECHANTILLON`, `FAM_CODE`, `FAM_LIBELLE`) VALUES (" + medicament.getDepotLegal() + "," + medicament.getNomCommercial() + "," + medicament.getComposition() + "," + medicament.getEffets() + "," + medicament.getContreIndication() + "," + medicament.getPrixEchantillon() + "," + medicament.getCodeFamille() + ","+ medicament.getLibellefamille() +")";
+		result = ConnexionMySql.execReqMaj(requette);
+		ConnexionMySql.fermerConnexionBd();
+		return result;
+	}
 	
 	
 }
