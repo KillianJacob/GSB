@@ -15,7 +15,7 @@ public class Visiteur {
 	protected int prime;
 	protected String codeUnite;
 	protected String nomUnite;
-
+//falut f'est fabien
 	public Visiteur(String matricule, String nom, String prenom, String login, String mdp, String adresse,
 			Localite uneLocalite, String telephone, Date dateEntree, int prime, String codeUnite, String nomUnite) {
 		this.matricule = matricule;
