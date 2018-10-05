@@ -14,7 +14,7 @@ public class VisiteurDao {
 		try {
 			if (reqSelection.next()) {
 				uneLocalite = LocaliteDao.rechercher(reqSelection.getString(7));
-				unVisiteur = new Visiteur(reqSelection.getString())
+				unVisiteur = new Visiteur(reqSelection.getString(),reqSelection.getString())
 			}
 			;
 		} catch (Exception e) {
