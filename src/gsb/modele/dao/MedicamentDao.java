@@ -33,7 +33,7 @@ public class MedicamentDao {
 	public static int SupprimerMedicament(Medicament medicament){
 		
 		int result = 0;
-		String requette = "DELETE FROM MEDICAMENT WHERE MED_DEPOTLEGAL=" + medicament.getDepotLegal();
+		String requette = "DELETE FROM MEDICAMENT WHERE MED_DEPOTLEGAL='" + medicament.getDepotLegal() + "';";
 		result = ConnexionMySql.execReqMaj(requette);
 		ConnexionMySql.fermerConnexionBd();
 		return result;		
@@ -42,7 +42,7 @@ public class MedicamentDao {
 	public static int AjouterMedicament(Medicament medicament){
 		
 		int result = 0;
-		String requette = "INSERT INTO `MEDICAMENT` (`MED_DEPOTLEGAL`, `MED_NOMCOMMERCIAL`, `MED_COMPOSITION`, `MED_EFFETS`, `MED_CONTREINDIC`, `MED_PRIXECHANTILLON`, `FAM_CODE`, `FAM_LIBELLE`) VALUES (" + medicament.getDepotLegal() + "," + medicament.getNomCommercial() + "," + medicament.getComposition() + "," + medicament.getEffets() + "," + medicament.getContreIndication() + "," + medicament.getPrixEchantillon() + "," + medicament.getCodeFamille() + ","+ medicament.getLibellefamille() +")";
+		String requette = "INSERT INTO `MEDICAMENT` (`MED_DEPOTLEGAL`, `MED_NOMCOMMERCIAL`, `MED_COMPOSITION`, `MED_EFFETS`, `MED_CONTREINDIC`, `MED_PRIXECHANTILLON`, `FAM_CODE`, `FAM_LIBELLE`) VALUES ('" + medicament.getDepotLegal() + "','" + medicament.getNomCommercial() + "','" + medicament.getComposition() + "','" + medicament.getEffets() + "','" + medicament.getContreIndication() + "','" + medicament.getPrixEchantillon() + "','" + medicament.getCodeFamille() + "','"+ medicament.getLibellefamille() +"')";
 		result = ConnexionMySql.execReqMaj(requette);
 		ConnexionMySql.fermerConnexionBd();
 		return result;

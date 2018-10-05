@@ -11,21 +11,28 @@ import gsb.modele.dao.MedicamentDao;
 
 public class MedicamentDaoTestUnits {
 
+	Medicament medicament;
+	
 	@Before
 	public void setUp() throws Exception {
+		medicament = new Medicament("TEST","","","","",0.0F,"","");
+		MedicamentDao.AjouterMedicament(medicament);
 	}
 
 	@After
 	public void tearDown() throws Exception {
+		
+		MedicamentDao.SupprimerMedicament(medicament);
+		
 	}
 
 	
 	@Test
 	public void testAjouterMedicament() {
 		
-		Medicament medicament = new Medicament("MDMA","","","","",0.0F,"","");
-		
-		assertNotSame(-1,MedicamentDao.AjouterMedicament(medicament));
+		Medicament medicamentTest = new Medicament("TEST1","","","","",0.0F,"","");
+		assertNotSame(-1,MedicamentDao.AjouterMedicament(medicamentTest));
+		MedicamentDao.SupprimerMedicament(medicamentTest);
 		
 		
 	}	
@@ -34,7 +41,7 @@ public class MedicamentDaoTestUnits {
 	public void testRechercherMedicament() {
 		
 		
-		
+		assertEquals(medicament.getDepotLegal(),MedicamentDao.RechercherMedicament("TEST").get(0).getDepotLegal());
 		
 	}
 
