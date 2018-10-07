@@ -10,7 +10,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
-
+import com.mysql.jdbc.Driver;
 /**
  * @author Isabelle 23 sept. 2014 TODO Pour changer le modèle de ce commentaire
  *         de type généré, allez à : Fenêtre - Préférences - Java - Style de
@@ -32,10 +32,9 @@ public class ConnexionMySql { // DAO = Data Access Object
 	 */
 	public static void connecterBd() {
 		// connexion à la base de donnée à partir de jdbc
-		String url = "jdbc:mysql://localhost/gsb_java"; // url : chaine de connexion
+		String url = "jdbc:mysql://localhost/gsb"; // url : chaine de connexion
 		// try permet d'essayer de lancer la connexion
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
 			cnx = DriverManager.getConnection(url,"root",""); 
 		}
 		// si la connexion echoue un message d'erreur est affiché

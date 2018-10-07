@@ -14,15 +14,15 @@ public class VisiteurDao {
 		try {
 			if (reqSelection.next()) {
 				uneLocalite = LocaliteDao.rechercher(reqSelection.getString(7));
-				unVisiteur = new Visiteur(reqSelection.getString(),reqSelection.getString(),reqSelection.getString())
+				//unVisiteur = new Visiteur(reqSelection.getString(),reqSelection.getString(),reqSelection.getString())
 			}
 			;
 		} catch (Exception e) {
-			System.out.println("erreur reqSelection.next() pour la requête - select * from LOCALITE where CODEPOSTAL='"
-					+ codeLocalite + "'");
+			//System.out.println("erreur reqSelection.next() pour la requête - select * from LOCALITE where CODEPOSTAL='"
+			//		+ codeLocalite + "'");
 			e.printStackTrace();
 		}
 		ConnexionMySql.fermerConnexionBd();
-		return uneLocalite;
+		return null;
 	}
 }

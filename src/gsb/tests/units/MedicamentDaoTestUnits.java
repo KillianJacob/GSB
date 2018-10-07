@@ -41,7 +41,7 @@ public class MedicamentDaoTestUnits {
 	public void testRechercherMedicament() {
 		
 		
-		assertEquals(medicament.getDepotLegal(),MedicamentDao.RechercherMedicament("TEST").get(0).getDepotLegal());
+		assertEquals(medicament.getDepotLegal(),MedicamentDao.RechercherMedicament("TEST").getDepotLegal());
 		
 	}
 
