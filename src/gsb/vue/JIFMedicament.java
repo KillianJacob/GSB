@@ -69,13 +69,21 @@ public class JIFMedicament extends JInternalFrame {
 		JTCodeFamille = new JTextField();
 		JTLibelleFamille = new JTextField();
 
+		pTexte.add(JLDepotlegal);
 		pTexte.add(JTDepotLegal);
+		pTexte.add(JLnomCommercial);
 		pTexte.add(JTnomCommercial);
+		pTexte.add(JLcomposition);
 		pTexte.add(JTcomposition);
+		pTexte.add(JLeffet);
 		pTexte.add(JTeffet);
+		pTexte.add(JLContreIndication);
 		pTexte.add(JTContreIndication);
+		pTexte.add(JLPrixEchantillon);
 		pTexte.add(JTPrixEchantillon);
+		pTexte.add(JLCodeFamille);
 		pTexte.add(JTCodeFamille);
+		pTexte.add(JLLibelleFamille);
 		pTexte.add(JTLibelleFamille);
 
 		// mise en forme de la fenêtre

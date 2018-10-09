@@ -82,7 +82,7 @@ public class MedicamentDao {
 	public static boolean MedicamentExist(String DepotLegal){
 		
 		boolean result = false;;
-		String requette = "SELECT COUNT(*) FROM MEDICAMENT WHERE `MED_DEPOTLEGAL`= " + DepotLegal + ";";
+		String requette = "SELECT COUNT(*) FROM MEDICAMENT WHERE `MED_DEPOTLEGAL`= '" + DepotLegal + "';";
 		ResultSet reqSelection = ConnexionMySql.execReqSelection(requette);
 		try {
 			if(reqSelection.next()) {

@@ -29,7 +29,7 @@ public class MedicamentService {
 	}
 	
 	
-	public static void AjouterMedicament(Medicament medicament) throws Exception{
+	public static int AjouterMedicament(Medicament medicament) throws Exception{
 
 		if(medicament.getDepotLegal() == null 
 				|| medicament.getCodeFamille() == null 
@@ -44,8 +44,18 @@ public class MedicamentService {
 
 
 		}
+		if(MedicamentDao.MedicamentExist(medicament.getDepotLegal())){
+			
+			throw new Exception("Le medicament éxiste Deja");
+			
+		}
+		if(medicament.getCodeFamille().length() > 3){
+			
+			throw new Exception("Code Famille Trop long");
+			
+		}
 		
-		MedicamentDao.AjouterMedicament(medicament);
+		return MedicamentDao.AjouterMedicament(medicament);
 
 
 	}
