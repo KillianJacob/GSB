@@ -20,6 +20,13 @@ public class MedicamentService {
 		return MedicamentDao.RechercherMedicament(DepotLegal);
 		
 	}
+
+	public static ArrayList<Medicament> RechercherToutMedicament() throws Exception{
+		
+		
+		return MedicamentDao.RechercherToutMedicament();
+		
+	}
 	
 	
 	public static void AjouterMedicament(Medicament medicament) throws Exception{
