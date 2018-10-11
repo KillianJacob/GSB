@@ -122,7 +122,7 @@ public class JIFMedicamentCons extends JIFMedicament implements ActionListener {
 			
 			for(int i =0; i < lesMedicaments.size();i++){
 				
-				if(lesMedicaments.get(i).getNomCommercial().equals(recherche.getText())){
+				if(lesMedicaments.get(i).getNomCommercial().toLowerCase().indexOf(recherche.getText().toLowerCase()) != -1){
 					
 					indiceEnCours = i;
 					med = lesMedicaments.get(i);
