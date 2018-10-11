@@ -42,6 +42,7 @@ public class JIFMedicamentAjout extends JIFMedicament implements ActionListener 
 		if (source == ajout) {
 			
 			Medicament med = new Medicament(JTDepotLegal.getText(), JTnomCommercial.getText(), JTcomposition.getText(), JTeffet.getText(), JTContreIndication.getText(), Float.parseFloat(JTPrixEchantillon.getText()), JTCodeFamille.getText(), JTLibelleFamille.getText());
+			
 			try {
 				if(MedicamentService.AjouterMedicament(med) == -1){
 					 JOptionPane.showMessageDialog(null, "Erreur le medicament n'a pas été ajouter","Echec de l'ajout", JOptionPane.INFORMATION_MESSAGE);								

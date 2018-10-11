@@ -1,3 +1,6 @@
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+
 import gsb.vue.MenuPrincipal;
 
 public class Main {
@@ -8,5 +11,6 @@ public class Main {
 		
 
 	}
-
+   
+	
 }

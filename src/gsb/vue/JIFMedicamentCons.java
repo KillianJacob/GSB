@@ -16,6 +16,10 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
 
@@ -34,6 +38,9 @@ public class JIFMedicamentCons extends JIFMedicament implements ActionListener {
 	private JButton suivant;
 	private JButton precedent;
 	private JButton dernier;
+	JTextField recherche;
+	JLabel rechercheTexte;
+	JButton rechercheButton;
 	private ArrayList<Medicament> lesMedicaments;
 	private int indiceEnCours;
 
@@ -53,8 +60,19 @@ public class JIFMedicamentCons extends JIFMedicament implements ActionListener {
 		precedent.addActionListener(this);
 		dernier.addActionListener(this);
 		setDefaultCloseOperation(HIDE_ON_CLOSE);
-		setTitle("Consultation données Medecin");
-
+		setTitle("Consultation données Medicament");
+		
+		JPanel pRecherche = new JPanel(); // panneau supportant la recherche
+		
+		recherche = new JTextField(10);
+		rechercheTexte = new JLabel("Rechercher :");
+		rechercheButton = new JButton("Rechercher");
+		pRecherche.add(rechercheTexte);		
+		pRecherche.add(recherche);
+		pRecherche.add(rechercheButton);
+		p.add(pRecherche);
+		rechercheButton.addActionListener(this);
+		
 		// récupération des données Medecin dans la collection
 		try {
 			lesMedicaments = MedicamentService.RechercherToutMedicament();
@@ -97,6 +115,31 @@ public class JIFMedicamentCons extends JIFMedicament implements ActionListener {
 				indiceEnCours = indiceEnCours + 1;
 			Medicament med = lesMedicaments.get(indiceEnCours);
 			remplirText(med);
+		}
+		else if (source == rechercheButton){
+			
+			Medicament med = null;
+			
+			for(int i =0; i < lesMedicaments.size();i++){
+				
+				if(lesMedicaments.get(i).getNomCommercial().equals(recherche.getText())){
+					
+					indiceEnCours = i;
+					med = lesMedicaments.get(i);
+					remplirText(med);
+				}
+				
+			}
+			if(med == null){
+				
+				 JOptionPane.showMessageDialog(null, "Medicament " + recherche.getText() + " est introuvable" , "Erreur", JOptionPane.INFORMATION_MESSAGE);			
+					
+				
+			}
+			
+			
+			
+			
 		}
 	} // fin actionPerformed
 
