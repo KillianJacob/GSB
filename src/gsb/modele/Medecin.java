@@ -7,7 +7,11 @@
 package gsb.modele;
 
 /**
+<<<<<<< HEAD
+ * @author Baptiste 22 févr. 2015 TODO Pour changer le modèle de ce commentaire
+=======
  * @author Boudeau 22 févr. 2015 TODO Pour changer le modèle de ce commentaire
+>>>>>>> branch 'master' of https://github.com/KillianJacob/GSB.git
  *         de type généré, allez à : Fenêtre - Préférences - Java - Style de
  *         code - Modèles de code
  */
