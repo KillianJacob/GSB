@@ -3,7 +3,9 @@ package gsb.modele.dao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
+import gsb.modele.Medecin;
 import gsb.modele.Medicament;
 import gsb.modele.Visiteur;
 import gsb.modele.dao.ConnexionMySql;
@@ -31,6 +33,29 @@ public class MedicamentDao {
 		
 	}	
 
+	public static ArrayList<Medicament> ListeMedicamentStockerByVisiteur(String matricule) {
+		ArrayList<Medicament> result = new ArrayList<Medicament>();
+		String requette = "select * (from MEDICAMENT m INNER JOIN STOCKER s ON m.MED_DEPOTLEGAL = s.MED_DEPOTLEGAL) inner join VISITEUR v on v.MATRICULE = s.MATRICULE_VISITEUR where v.MATRICULE ='" + matricule + "';";
+		ResultSet reqSelection = ConnexionMySql
+				.execReqSelection(requette);
+		try {
+			while (reqSelection.next()) {
+				
+				result.add(new Medicament(reqSelection.getString(1), reqSelection.getString(2), reqSelection.getString(3),
+						reqSelection.getString(4), reqSelection.getString(5), reqSelection.getFloat(6), reqSelection.getString(7),
+						reqSelection.getString(8)));
+				
+				}
+			;
+		} catch (Exception e) {
+			System.out.println("erreur reqSelection.next() pour la requête - " + requette);
+
+			e.printStackTrace();
+		}
+		ConnexionMySql.fermerConnexionBd();
+		return result;
+	}
+	
 	public static Medicament RechercherMedicamentByVisiteur(Visiteur visiteur){
 		
 		Medicament result = null;
@@ -125,6 +150,22 @@ public class MedicamentDao {
 		return result;
 		
 	}
+	
+	public static HashMap<String, Medicament> retournerDictionnaireDesMedicament() {
+		HashMap<String, Medicament> diccoDesMedicament = new HashMap<String, Medicament>();
+		ResultSet reqSelection = ConnexionMySql.execReqSelection("select MED_DEPOTLEGAL from MEDICAMENT");
+		try {
+			while (reqSelection.next()) {
+				String codeMedicament = reqSelection.getString(1);
+				diccoDesMedicament.put(codeMedicament, MedicamentDao.RechercherMedicament(codeMedicament));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("erreur retournerDiccoDesMedicaments()");
+		}
+		return diccoDesMedicament;
+	}
+	
 	
 	
 }

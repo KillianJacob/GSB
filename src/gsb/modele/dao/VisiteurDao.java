@@ -1,9 +1,11 @@
 package gsb.modele.dao;
 
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.Date;
 
 import gsb.modele.Localite;
+import gsb.modele.Medicament;
 import gsb.modele.Visiteur;
 
 public class VisiteurDao {
@@ -33,4 +35,5 @@ public class VisiteurDao {
 		ConnexionMySql.fermerConnexionBd();
 		return unVisiteur;
 	}
+	
 }
