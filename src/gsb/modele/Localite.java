@@ -7,9 +7,7 @@
 package gsb.modele;
 
 /**
- * @author Isabelle 22 févr. 2015 TODO Pour changer le modèle de ce commentaire
- *         de type généré, allez à : Fenêtre - Préférences - Java - Style de
- *         code - Modèles de code
+ * @author MartinB 7 nov. 2018
  */
 public class Localite {
 	protected String codePostal;
