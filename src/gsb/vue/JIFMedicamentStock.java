@@ -27,13 +27,25 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JSeparator;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
+import net.miginfocom.swing.MigLayout;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import com.jgoodies.forms.layout.FormLayout;
+import com.jgoodies.forms.layout.ColumnSpec;
+import com.jgoodies.forms.layout.RowSpec;
+import com.jgoodies.forms.layout.FormSpecs;
 
 public class JIFMedicamentStock extends JInternalFrame {
 	private JTextField textField;
 	private JTable table;
 	private ArrayList<Medicament> liste;
-
-	public JIFMedicamentStock() {
+	private String[] columnNames = {"Depot legal", "Nom","Effets","Libelle Famille"};
+	
+	
+	public JIFMedicamentStock(MenuPrincipal menu,String matricule) {
 		
 		liste = new ArrayList<Medicament>();
 		
@@ -45,7 +57,7 @@ public class JIFMedicamentStock extends JInternalFrame {
 		panel.add(lblNewLabel);
 		
 		JPanel panel_1 = new JPanel();
-		getContentPane().add(panel_1, BorderLayout.CENTER);
+		getContentPane().add(panel_1, BorderLayout.SOUTH);
 		panel_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		JLabel lblNewLabel_1 = new JLabel("Code Visiteur");
@@ -61,10 +73,8 @@ public class JIFMedicamentStock extends JInternalFrame {
 		panel_1.add(btnRechercher);
 		
 		JPanel panel_3 = new JPanel();
-		panel_1.add(panel_3);
+		getContentPane().add(panel_3, BorderLayout.CENTER);
 		panel_3.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		
-	
 		
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -72,25 +82,36 @@ public class JIFMedicamentStock extends JInternalFrame {
 		btnRechercher.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				
+				menu.ouvrirFenetre(new JIFMedicamentStock(menu,textField.getText()));
 				
 			}
 		});
 		
-		String[] columnNames = {"Depot legal", "Nom","Effets","Libelle Famille"};
-		
-		String[][] data = new String[5][4];
-		
-		for(int i = 0; i < 5;i++){
+		String[][] data;
+		if(matricule != null){
 			
-			data[i][0] = "";
-			data[i][1] = "";
-			data[i][2] = "";
-			data[i][3] = "";			
+			try {
+				liste = MedicamentService.RechercherMedicamentStocker(matricule);
+			} catch (Exception e1) {
+				
+				e1.printStackTrace();
+			}
+			
+			data = new String[liste.size()][4];
+			
+			for(int i = 0; i < liste.size();i++){
+				
+				data[i][0] = liste.get(i).getDepotLegal();
+				data[i][1] = liste.get(i).getNomCommercial();
+				data[i][2] = liste.get(i).getEffets();
+				data[i][3] = liste.get(i).getLibellefamille();				
+			}
+			
+			table = new JTable(data,columnNames);
+			panel_3.add(table);				
+			
 		}
-		
-		table = new JTable(data,columnNames);
-		panel_3.add(table);	
+
 		
 	}
 

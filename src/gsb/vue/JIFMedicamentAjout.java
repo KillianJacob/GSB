@@ -71,6 +71,7 @@ public class JIFMedicamentAjout extends JInternalFrame {
 		panel_1.add(lblNewLabel_2);
 		
 		textFieldNomCommercial = new JTextField();
+		textFieldNomCommercial.setHorizontalAlignment(SwingConstants.CENTER);
 		textFieldNomCommercial.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		panel_1.add(textFieldNomCommercial);
 		textFieldNomCommercial.setColumns(10);
@@ -80,6 +81,7 @@ public class JIFMedicamentAjout extends JInternalFrame {
 		panel_1.add(lblNewLabel_1);
 		
 		textFieldDepotLegal = new JTextField();
+		textFieldDepotLegal.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_1.add(textFieldDepotLegal);
 		textFieldDepotLegal.setColumns(10);
 		
@@ -89,6 +91,7 @@ public class JIFMedicamentAjout extends JInternalFrame {
 		
 		
 		textFieldCodeFamille = new JTextField();
+		textFieldCodeFamille.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_1.add(textFieldCodeFamille);
 		textFieldCodeFamille.setColumns(10);
 		
@@ -97,6 +100,7 @@ public class JIFMedicamentAjout extends JInternalFrame {
 		panel_1.add(laelFamillelibelle);
 		
 		textFieldLibelleFamille = new JTextField();
+		textFieldLibelleFamille.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_1.add(textFieldLibelleFamille);
 		textFieldLibelleFamille.setColumns(10);
 		
