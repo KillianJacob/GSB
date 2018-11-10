@@ -1,65 +1,178 @@
 package gsb.vue;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.EventQueue;
 
-import javax.swing.JButton;
+import javax.swing.JInternalFrame;
+import javax.swing.JPanel;
+import java.awt.BorderLayout;
+import java.awt.Color;
+
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.event.InternalFrameAdapter;
-import javax.swing.event.InternalFrameEvent;
 
-import gsb.modele.Medecin;
+import java.awt.Font;
+import java.util.ArrayList;
+
+import javax.swing.SwingConstants;
+import javax.swing.border.Border;
+
+import com.jgoodies.forms.layout.FormLayout;
+import com.jgoodies.forms.layout.ColumnSpec;
+import com.jgoodies.forms.layout.FormSpecs;
+import com.jgoodies.forms.layout.RowSpec;
+
 import gsb.modele.Medicament;
-import gsb.modele.dao.MedicamentDao;
 import gsb.service.MedicamentService;
 
-public class JIFMedicamentAjout extends JIFMedicament implements ActionListener {
+import javax.swing.JSplitPane;
+import javax.swing.JDesktopPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import java.awt.GridLayout;
+import javax.swing.JTextField;
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import java.awt.FlowLayout;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-	JButton ajout;
-	
+public class JIFMedicamentAjout extends JInternalFrame {
+	private JTextField textFieldDepotLegal;
+	private JTextField textFieldCodeFamille;
+	private JTextField textFieldNomCommercial;
+	private JTextField textFieldLibelleFamille;
+	private JTextArea textAreaComposant;
+	private JTextArea textAreaEffet;
+	private JTextArea textAreaContreIndic;
+	private int counter;
+	private ArrayList<Medicament> liste;
+
+	/**
+	 * Create the frame.
+	 */
 	public JIFMedicamentAjout() {
-		super();
-		ajout = new JButton("Ajouter");
-		pBoutons.add(ajout);
-		
-		ajout.addActionListener(this);	
-		setDefaultCloseOperation(HIDE_ON_CLOSE);
-		setTitle("Ajout Medicament");
 		
 		
-		// ajout d'un écouteur d'évènement pour la fermeture de la fenêtre
-		addInternalFrameListener(new InternalFrameAdapter() {
-			public void internalFrameClosing(InternalFrameEvent e) {
-				// le code que tu veux exécuter à la fermeture de la JInternalFrame
+		JPanel panel = new JPanel();
+		getContentPane().add(panel, BorderLayout.NORTH);
+		
+		JLabel lblNewLabel = new JLabel("Ajout d'un Medicament");
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		panel.add(lblNewLabel);
+		
+		JPanel panel_1 = new JPanel();
+		getContentPane().add(panel_1, BorderLayout.CENTER);
+		panel_1.setLayout(new GridLayout(0, 2, 0, 0));
+		
+		Border border = BorderFactory.createLineBorder(Color.BLACK);
+		
+		JLabel lblNewLabel_2 = new JLabel("Nom Commercial");
+		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
+		panel_1.add(lblNewLabel_2);
+		
+		textFieldNomCommercial = new JTextField();
+		panel_1.add(textFieldNomCommercial);
+		textFieldNomCommercial.setColumns(10);
+		
+		JLabel lblNewLabel_1 = new JLabel("Depot Legal");
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		panel_1.add(lblNewLabel_1);
+		
+		textFieldDepotLegal = new JTextField();
+		panel_1.add(textFieldDepotLegal);
+		textFieldDepotLegal.setColumns(10);
+		
+		JLabel lblEffet = new JLabel("Code Famille");
+		lblEffet.setHorizontalAlignment(SwingConstants.CENTER);
+		panel_1.add(lblEffet);
+		
+		
+		textFieldCodeFamille = new JTextField();
+		panel_1.add(textFieldCodeFamille);
+		textFieldCodeFamille.setColumns(10);
+		
+		JLabel laelFamillelibelle = new JLabel("Libelle Famille");
+		laelFamillelibelle.setHorizontalAlignment(SwingConstants.CENTER);
+		panel_1.add(laelFamillelibelle);
+		
+		textFieldLibelleFamille = new JTextField();
+		panel_1.add(textFieldLibelleFamille);
+		textFieldLibelleFamille.setColumns(10);
+		
+		JLabel lblEffet_1 = new JLabel("Effet");
+		lblEffet_1.setHorizontalAlignment(SwingConstants.CENTER);
+		panel_1.add(lblEffet_1);
+		
+		textAreaEffet = new JTextArea();
+		textAreaEffet.setWrapStyleWord(true);
+		textAreaEffet.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		panel_1.add(textAreaEffet);
+		textAreaEffet.setLineWrap(true);
+		textAreaEffet.setRows(5);
+		
+
+		textAreaEffet.setBorder(BorderFactory.createCompoundBorder(border, 
+	            BorderFactory.createEmptyBorder(2, 2, 2, 2)));		
+		
+		JLabel Composant = new JLabel("Composant");
+		Composant.setHorizontalAlignment(SwingConstants.CENTER);
+		panel_1.add(Composant);
+		
+		textAreaComposant = new JTextArea();
+		textAreaComposant.setWrapStyleWord(true);
+        textAreaComposant.setRows(5);
+		textAreaComposant.setLineWrap(true);
+		textAreaComposant.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		panel_1.add(textAreaComposant);
+
+		textAreaComposant.setBorder(BorderFactory.createCompoundBorder(border, 
+	            BorderFactory.createEmptyBorder(2, 2, 2, 2)));
+			
+		
+		JLabel lblContreindic = new JLabel("ContreIndic");
+		lblContreindic.setHorizontalAlignment(SwingConstants.CENTER);
+		panel_1.add(lblContreindic);
+		
+		textAreaContreIndic = new JTextArea();
+		textAreaContreIndic.setWrapStyleWord(true);
+		textAreaContreIndic.setRows(5);
+		textAreaContreIndic.setLineWrap(true);
+		textAreaContreIndic.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		panel_1.add(textAreaContreIndic);
+		
+		textAreaContreIndic.setBorder(BorderFactory.createCompoundBorder(border, 
+		            BorderFactory.createEmptyBorder(2, 2, 2, 2)));
+		
+		
+		JPanel panel_2 = new JPanel();
+		getContentPane().add(panel_2, BorderLayout.SOUTH);
+		panel_2.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		
+		JButton btnSuivant = new JButton("Ajouter");
+		btnSuivant.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Ajouter();
+				
+				
 			}
 		});
-	}
+		panel_2.add(btnSuivant);
+		
 
-	@Override
-	public void actionPerformed(ActionEvent evt) {
-		
-		Object source = evt.getSource();
-		if (source == ajout) {
-			
-			Medicament med = new Medicament(JTDepotLegal.getText(), JTnomCommercial.getText(), JTcomposition.getText(), JTeffet.getText(), JTContreIndication.getText(), Float.parseFloat(JTPrixEchantillon.getText()), JTCodeFamille.getText(), JTLibelleFamille.getText());
-			
-			try {
-				if(MedicamentService.AjouterMedicament(med) == -1){
-					 JOptionPane.showMessageDialog(null, "Erreur le medicament n'a pas été ajouter","Echec de l'ajout", JOptionPane.INFORMATION_MESSAGE);								
-					
-				}
-				else{
-					 JOptionPane.showMessageDialog(null,  "Le medicament " + JTnomCommercial.getText() + " a bien été ajouter",  "Ajout Reussi", JOptionPane.INFORMATION_MESSAGE);			
-					 
-				}
-		} catch (Exception e) {
-			 JOptionPane.showMessageDialog(null, e.getMessage(), "Erreur", JOptionPane.INFORMATION_MESSAGE);			
-			};
-			
-		}
-		
-		
 	}
+	
+	public void Ajouter(){
 		
+		Medicament med = new Medicament(textFieldDepotLegal.getText(),textFieldNomCommercial.getText(),textAreaComposant.getText(),textAreaEffet.getText(),textAreaContreIndic.getText(),0F,textFieldCodeFamille.getText(),textFieldLibelleFamille.getText());
+	
+		try {
+			MedicamentService.AjouterMedicament(med);
+		} catch (Exception e) {
+			
+			JOptionPane.showMessageDialog(null, "Erreur, "+ e.getMessage());
+			e.printStackTrace();
+		}
+	}
 	
 }

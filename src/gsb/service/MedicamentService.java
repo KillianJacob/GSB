@@ -44,6 +44,18 @@ public class MedicamentService {
 
 
 		}
+		if(medicament.getDepotLegal().equals("")
+				|| medicament.getCodeFamille().equals("")
+				|| medicament.getComposition().equals("")
+				|| medicament.getContreIndication() .equals("")
+				|| medicament.getEffets() .equals("")
+				|| medicament.getLibellefamille() .equals("")
+				|| medicament.getNomCommercial() .equals("")
+				){
+			
+			
+			throw new Exception("Donnée null");
+		}
 		if(MedicamentDao.MedicamentExist(medicament.getDepotLegal())){
 			
 			throw new Exception("Le medicament éxiste Deja");

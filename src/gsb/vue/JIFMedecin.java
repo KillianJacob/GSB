@@ -97,6 +97,8 @@ public class JIFMedecin extends JInternalFrame {
 		p.add(pBoutons);
 		Container contentPane = getContentPane();
 		contentPane.add(p);
+		
+		
 
 	}
 
