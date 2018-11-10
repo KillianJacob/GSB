@@ -88,7 +88,7 @@ public class JIFMedicamentListeDic extends JInternalFrame implements ActionListe
 		pSaisie = new JPanel();
 		JTcodeMedicament = new JTextField(20);
 		JTcodeMedicament.setMaximumSize(JTcodeMedicament.getPreferredSize());
-		JBafficherFiche = new JButton("Afficher Fiche médecin");
+		JBafficherFiche = new JButton("Afficher Fiche médicament");
 		JBafficherFiche.addActionListener(this); // source d'évenement
 		pSaisie.add(JTcodeMedicament);
 		pSaisie.add(JBafficherFiche);
