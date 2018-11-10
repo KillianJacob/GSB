@@ -71,6 +71,7 @@ public class JIFMedicamentAjout extends JInternalFrame {
 		panel_1.add(lblNewLabel_2);
 		
 		textFieldNomCommercial = new JTextField();
+		textFieldNomCommercial.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		panel_1.add(textFieldNomCommercial);
 		textFieldNomCommercial.setColumns(10);
 		
@@ -159,7 +160,31 @@ public class JIFMedicamentAjout extends JInternalFrame {
 		});
 		panel_2.add(btnSuivant);
 		
+		textFieldDepotLegal.setBorder(border);
+		textFieldCodeFamille.setBorder(border);
+		textFieldNomCommercial.setBorder(border);
+		textFieldLibelleFamille.setBorder(border);
+		lblContreindic.setBorder(border);
+		lblNewLabel_1.setBorder(border);	
+		lblNewLabel_2.setBorder(border);
+		lblEffet.setBorder(border);
+		laelFamillelibelle.setBorder(border);
+		lblEffet_1.setBorder(border);
+		Composant.setBorder(border);
+	
+		textFieldDepotLegal.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		textFieldCodeFamille.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		textFieldNomCommercial.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		textFieldLibelleFamille.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lblContreindic.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 17));	
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lblEffet.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		laelFamillelibelle.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lblEffet_1.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		Composant.setFont(new Font("Tahoma", Font.PLAIN, 17));		
 
+		
 	}
 	
 	public void Ajouter(){

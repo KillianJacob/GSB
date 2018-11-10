@@ -210,7 +210,17 @@ public class JIFMedicamentCons extends JInternalFrame {
 		});
 		panel_2.add(btnSuivant);
 		
-
+		textFieldDepotLegal.setBorder(border);
+		textFieldCodeFamille.setBorder(border);
+		textFieldNomCommercial.setBorder(border);
+		textFieldLibelleFamille.setBorder(border);
+		lblContreindic.setBorder(border);
+		lblNewLabel_1.setBorder(border);	
+		lblNewLabel_2.setBorder(border);
+		lblEffet.setBorder(border);
+		laelFamillelibelle.setBorder(border);
+		lblEffet_1.setBorder(border);
+		Composant.setBorder(border);
 	}
 	
 	public void remplirText(Medicament med){

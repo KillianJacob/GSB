@@ -122,6 +122,18 @@ public class MedicamentService {
 		
 	}	
 	
+	public static ArrayList<Medicament> RechercherMedicamentStocker(String matricule) throws Exception{
+		
+		if(matricule.equals("") || matricule == null){
+			
+			throw new Exception("Donnée null");
+			
+		}
+		
+		return MedicamentDao.ListeMedicamentStockerByVisiteur(matricule);
+		
+	}
+	
 
 
 }

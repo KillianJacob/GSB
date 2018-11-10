@@ -35,7 +35,7 @@ public class MedicamentDao {
 
 	public static ArrayList<Medicament> ListeMedicamentStockerByVisiteur(String matricule) {
 		ArrayList<Medicament> result = new ArrayList<Medicament>();
-		String requette = "select * (from MEDICAMENT m INNER JOIN STOCKER s ON m.MED_DEPOTLEGAL = s.MED_DEPOTLEGAL) inner join VISITEUR v on v.MATRICULE = s.MATRICULE_VISITEUR where v.MATRICULE ='" + matricule + "';";
+		String requette = "select * from MEDICAMENT m INNER JOIN STOCKER s ON m.MED_DEPOTLEGAL = s.MED_DEPOTLEGAL inner join VISITEUR v on v.MATRICULE = s.MATRICULE_VISITEUR where v.MATRICULE ='" + matricule + "';";
 		ResultSet reqSelection = ConnexionMySql
 				.execReqSelection(requette);
 		try {
