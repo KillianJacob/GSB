@@ -1,6 +1,7 @@
 package gsb.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import gsb.modele.Medicament;
 import gsb.modele.dao.MedicamentDao;
@@ -122,7 +123,7 @@ public class MedicamentService {
 		
 	}	
 	
-	public static ArrayList<Medicament> RechercherMedicamentStocker(String matricule) throws Exception{
+	public static HashMap<Medicament,Integer> RechercherMedicamentStocker(String matricule) throws Exception{
 		
 		if(matricule.equals("") || matricule == null){
 			

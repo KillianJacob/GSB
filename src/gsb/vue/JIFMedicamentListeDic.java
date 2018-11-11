@@ -57,11 +57,11 @@ public class JIFMedicamentListeDic extends JInternalFrame {
 			
 			data[i][0] = ListeMedicament.get(i).getDepotLegal();
 			data[i][1] = ListeMedicament.get(i).getNomCommercial();
-			data[i][2] = ListeMedicament.get(i).getEffets();
-			data[i][3] = ListeMedicament.get(i).getLibellefamille();			
+			data[i][2] = ListeMedicament.get(i).getComposition();
+			data[i][3] = ListeMedicament.get(i).getLibellefamille();
 		}
 		
-		String[] columnNames = {"Depot legal", "Nom","Effets","Libelle Famille"};
+		String[] columnNames = {"Depot legal", "Nom","Composant","Libelle Famille"};
 		
 		
 		table = new JTable(data,columnNames);

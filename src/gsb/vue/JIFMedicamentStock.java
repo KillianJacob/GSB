@@ -11,6 +11,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JTextField;
 import java.awt.GridLayout;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
@@ -41,13 +42,13 @@ import com.jgoodies.forms.layout.FormSpecs;
 public class JIFMedicamentStock extends JInternalFrame {
 	private JTextField textField;
 	private JTable table;
-	private ArrayList<Medicament> liste;
-	private String[] columnNames = {"Depot legal", "Nom","Effets","Libelle Famille"};
+	private HashMap<Medicament,Integer> liste;
+	private String[] columnNames = {"Depot legal", "Nom","Effets","Libelle Famille","Quantité"};
 	
 	
 	public JIFMedicamentStock(MenuPrincipal menu,String matricule) {
 		
-		liste = new ArrayList<Medicament>();
+		liste = new HashMap<Medicament,Integer>();
 		
 		JPanel panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.NORTH);
@@ -76,9 +77,6 @@ public class JIFMedicamentStock extends JInternalFrame {
 		getContentPane().add(panel_3, BorderLayout.CENTER);
 		panel_3.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
-		
-		JScrollPane scrollPane = new JScrollPane();
-		panel_3.add(scrollPane);
 		btnRechercher.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -97,18 +95,29 @@ public class JIFMedicamentStock extends JInternalFrame {
 				e1.printStackTrace();
 			}
 			
-			data = new String[liste.size()][4];
-			
-			for(int i = 0; i < liste.size();i++){
+			data = new String[liste.size()][5];
 				
-				data[i][0] = liste.get(i).getDepotLegal();
-				data[i][1] = liste.get(i).getNomCommercial();
-				data[i][2] = liste.get(i).getEffets();
-				data[i][3] = liste.get(i).getLibellefamille();				
+			int count = 0;
+			
+			for (Medicament key : liste.keySet()) {
+				
+
+				
+				data[count][0] = key.getDepotLegal();
+				data[count][1] = key.getNomCommercial();
+				data[count][2] = key.getEffets();
+				data[count][3] = key.getLibellefamille();
+				data[count][4] = liste.get(key).toString();				
+
+				count++;
+				
 			}
 			
 			table = new JTable(data,columnNames);
 			panel_3.add(table);				
+			
+			JScrollPane scrollPane = new JScrollPane(table);
+			panel_3.add(scrollPane);
 			
 		}
 
