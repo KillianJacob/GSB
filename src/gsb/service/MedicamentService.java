@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import gsb.modele.Medicament;
 import gsb.modele.dao.MedicamentDao;
+import gsb.modele.dao.VisiteurDao;
 
 public class MedicamentService {
 
@@ -136,5 +137,57 @@ public class MedicamentService {
 	}
 	
 
+	public static void AJouterMedicamentStocker(String matricule,String depot,String qte) throws Exception{
+		
+		if(matricule.equals("") || matricule == null || depot.equals("") || depot == null || qte.equals("") || qte == null){
+			
+			throw new Exception("Donnée null");
+			
+		}		
+		if(!MedicamentDao.MedicamentExist(depot)){
+			
+			throw new Exception("Medicament inexistant");			
+			
+		}
+		if(!VisiteurDao.VisiteurExist(matricule)){
+			
+			throw new Exception("Visiteur inexistant");			
+			
+		}
+		
+		if(CheckIfAlreadyStock(matricule,depot)){
+			
+			MedicamentDao.ModifierMedicamentStocker(matricule, depot, qte);
+			
+		}
+		else{
+
+		   MedicamentDao.AjouterMedicamentStockerByVisiteur(depot, matricule, Integer.parseInt(qte));
+		
+		}
+		
+	}
+	
+	private static boolean CheckIfAlreadyStock(String matricule,String depot) throws Exception{
+		
+		boolean res = false;
+		
+		HashMap<Medicament,Integer> liste = RechercherMedicamentStocker(matricule);
+		
+		for(Medicament key : liste.keySet()){
+			
+			if(key.getDepotLegal().equals(depot)){
+				
+				res = true;
+				
+			}
+			
+		}		
+		
+		return res;
+		
+		
+	}
+	
 
 }

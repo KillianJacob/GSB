@@ -8,6 +8,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
+
 import javax.swing.JTable;
 import javax.swing.border.BevelBorder;
 
@@ -17,6 +19,7 @@ import gsb.service.MedicamentService;
 import javax.swing.UIManager;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.Toolkit;
 import java.util.ArrayList;
 
 import javax.swing.JList;

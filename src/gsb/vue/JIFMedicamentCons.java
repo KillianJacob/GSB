@@ -225,6 +225,19 @@ public class JIFMedicamentCons extends JInternalFrame {
 		laelFamillelibelle.setBorder(border);
 		lblEffet_1.setBorder(border);
 		Composant.setBorder(border);
+		
+		textFieldDepotLegal.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		textFieldCodeFamille.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		textFieldNomCommercial.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		textFieldLibelleFamille.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lblContreindic.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 17));	
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lblEffet.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		laelFamillelibelle.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lblEffet_1.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		Composant.setFont(new Font("Tahoma", Font.PLAIN, 17));		
+		
 	}
 	
 	public void remplirText(Medicament med){

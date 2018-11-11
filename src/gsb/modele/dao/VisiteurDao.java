@@ -36,4 +36,29 @@ public class VisiteurDao {
 		return unVisiteur;
 	}
 	
+	
+	public static boolean VisiteurExist(String matricule){
+
+		boolean result = false;;
+		String requette = "SELECT COUNT(*) FROM VISITEUR WHERE `MATRICULE`= '" + matricule + "';";
+		ResultSet reqSelection = ConnexionMySql.execReqSelection(requette);
+		try {
+			if(reqSelection.next()) {
+				if(reqSelection.getInt(1) > 0){
+					
+					result = true;
+					
+				}
+			}
+			;
+		} catch (Exception e) {
+			System.out.println("erreur reqSelection.next() pour la requête - " + requette);
+			e.printStackTrace();
+		}
+		ConnexionMySql.fermerConnexionBd();			
+		
+		
+		return result;
+	}
+	
 }
