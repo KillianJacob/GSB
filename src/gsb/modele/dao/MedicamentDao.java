@@ -33,17 +33,27 @@ public class MedicamentDao {
 		
 	}	
 
-	public static ArrayList<Medicament> ListeMedicamentStockerByVisiteur(String matricule) {
-		ArrayList<Medicament> result = new ArrayList<Medicament>();
-		String requette = "select * (from MEDICAMENT m INNER JOIN STOCKER s ON m.MED_DEPOTLEGAL = s.MED_DEPOTLEGAL) inner join VISITEUR v on v.MATRICULE = s.MATRICULE_VISITEUR where v.MATRICULE ='" + matricule + "';";
+	public static int ModifierMedicamentStocker(String matricule,String depot, String qte){
+		
+		int result = 0;
+		String requette = "UPDATE `stocker` SET `QTESTOCK` = '"+ qte + "' WHERE `stocker`.`MATRICULE_VISITEUR` = '" + matricule + "' AND `stocker`.`MED_DEPOTLEGAL` = '" + depot + "';";
+		result = ConnexionMySql.execReqMaj(requette);
+		ConnexionMySql.fermerConnexionBd();
+		return result;
+		
+	}	
+	
+	public static HashMap<Medicament,Integer> ListeMedicamentStockerByVisiteur(String matricule) {
+		HashMap<Medicament,Integer> result = new HashMap<Medicament,Integer>();
+		String requette = "select * from MEDICAMENT m INNER JOIN STOCKER s ON m.MED_DEPOTLEGAL = s.MED_DEPOTLEGAL inner join VISITEUR v on v.MATRICULE = s.MATRICULE_VISITEUR where v.MATRICULE ='" + matricule + "';";
 		ResultSet reqSelection = ConnexionMySql
 				.execReqSelection(requette);
 		try {
 			while (reqSelection.next()) {
 				
-				result.add(new Medicament(reqSelection.getString(1), reqSelection.getString(2), reqSelection.getString(3),
+				result.put(new Medicament(reqSelection.getString(1), reqSelection.getString(2), reqSelection.getString(3),
 						reqSelection.getString(4), reqSelection.getString(5), reqSelection.getFloat(6), reqSelection.getString(7),
-						reqSelection.getString(8)));
+						reqSelection.getString(8)) , reqSelection.getInt(11));
 				
 				}
 			;
@@ -54,6 +64,16 @@ public class MedicamentDao {
 		}
 		ConnexionMySql.fermerConnexionBd();
 		return result;
+	}
+	
+	public static int AjouterMedicamentStockerByVisiteur(String DepotLegal,String Matricule,Integer qte){
+		
+		int result = 0;
+		String requette = "INSERT INTO `stocker` (`MATRICULE_VISITEUR`, `MED_DEPOTLEGAL`, `QTESTOCK`) VALUES ('" + Matricule + "', '" + DepotLegal + "', '" + qte + "');";
+		result = ConnexionMySql.execReqMaj(requette);
+		ConnexionMySql.fermerConnexionBd();
+		return result;
+		
 	}
 	
 	public static Medicament RechercherMedicamentByVisiteur(Visiteur visiteur){

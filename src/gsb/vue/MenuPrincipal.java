@@ -8,9 +8,13 @@ package gsb.vue;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.DefaultDesktopManager;
+import javax.swing.JComponent;
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
@@ -52,7 +56,15 @@ public class MenuPrincipal extends JFrame implements ActionListener {
 		contentPane.add(desktopPane, BorderLayout.CENTER);
 
 		setTitle("GSB");
-		setSize(500, 400);
+		
+		Dimension DimMax = Toolkit.getDefaultToolkit().getScreenSize();
+		
+		DimMax.setSize(DimMax.getWidth()/2, DimMax.getHeight()/2);
+		
+		setSize(DimMax);
+		this.setResizable(false);
+		
+		//setSize(500, 400);
 
 		// Ajout d'une barre de menus à la fenêtre
 		mbar = new JMenuBar();
@@ -84,6 +96,14 @@ public class MenuPrincipal extends JFrame implements ActionListener {
 		mA21.addActionListener(this);
 		mMedicaments.add(mA21);
 		
+		JMenuItem mA22 = new JMenuItem("Stock Medicament");
+		mA22.addActionListener(this);
+		mMedicaments.add(mA22);	
+
+		JMenuItem mA23 = new JMenuItem("Ajout Stock Medicament");
+		mA23.addActionListener(this);
+		mMedicaments.add(mA23);			
+		
 		mbar.add(mMedecins);
 		mbar.add(mMedicaments);
 		mbar.add(mVisites);
@@ -107,7 +127,7 @@ public class MenuPrincipal extends JFrame implements ActionListener {
 			}
 			else if(ChoixOption.equals("Consultation Medicament")){
 				
-				ouvrirFenetre(new JIFMedicamentCons());
+				ouvrirFenetre(new JIFMedicamentCons(null));
 			
 			}
 			else if(ChoixOption.equals("Ajout Medicaments")){
@@ -118,6 +138,12 @@ public class MenuPrincipal extends JFrame implements ActionListener {
 			else if (ChoixOption.equals("Liste Medicament")) {
 					ouvrirFenetre(new JIFMedicamentListeDic(this));
 				}
+			else if (ChoixOption.equals("Stock Medicament")) {
+				ouvrirFenetre(new JIFMedicamentStock(this,null));
+			}
+			else if (ChoixOption.equals("Ajout Stock Medicament")) {
+				ouvrirFenetre(new JIFMedicamentAjoutStock());
+			}				
 		}
 
 	}
@@ -127,11 +153,13 @@ public class MenuPrincipal extends JFrame implements ActionListener {
 									// est libérée
 		myJInternalFrame = uneFenetre;
 		myJInternalFrame.setVisible(true);
-		myJInternalFrame.setResizable(true);
-		myJInternalFrame.setMaximizable(true);
-		myJInternalFrame.setClosable(true);
-		myJInternalFrame.setSize(480, 380);
+		myJInternalFrame.setResizable(false);
+		myJInternalFrame.setMaximizable(false);
+		myJInternalFrame.setClosable(false);
+		//myJInternalFrame.setm
+		
+		myJInternalFrame.setSize(desktopPane.getSize());
 		desktopPane.add(myJInternalFrame);
 	}
-
+	
 }
