@@ -20,6 +20,23 @@ import java.util.HashMap;
  *         code - Modèles de code
  */
 public class MedecinDao {
+	
+	public static int AjouterMedecin(Medecin med){
+		int result = 0;
+		String requette = "INSERT INTO `MEDECIN` (`CODEMED`, `NOM`, `PRENOM`, `ADRESSE`, `CODEPOSTAL`, `TELEPHONE`, `POTENTIEL`, `SPECIALITE`) VALUES ('" + med.getCodeMed() + "','" 
+		+ med.getNom() +"','"+ med.getPrenom() +"','"+ med.getAdresse() +"','"+ med.getLaLocalite().getCodePostal() +"','"+ med.getTelephone()+"','"+ med.getPotentiel() +"','"+ med.getSpecialite()+"')";
+		result = ConnexionMySql.execReqMaj(requette);
+		ConnexionMySql.fermerConnexionBd();
+		return result;
+}
+
+public static int SupprimerMedecin(Medecin med){
+	int result = 0;
+	String requette = "DELETE FROM MEDECIN WHERE CODEPOSTAL='" + med.getLaLocalite().getCodePostal() + "';";
+	result = ConnexionMySql.execReqMaj(requette);
+	ConnexionMySql.fermerConnexionBd();
+	return result;	
+}
 
 	public static Medecin rechercher(String codeMedecin) {
 		Medecin unMedecin = null;

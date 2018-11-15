@@ -8,10 +8,8 @@ import org.junit.Test;
 
 import gsb.modele.Localite;
 import gsb.modele.Medecin;
-import gsb.modele.Medicament;
 import gsb.modele.dao.LocaliteDao;
 import gsb.modele.dao.MedecinDao;
-import gsb.modele.dao.MedicamentDao;
 
 public class MedecinDaoTestUnits {
 
