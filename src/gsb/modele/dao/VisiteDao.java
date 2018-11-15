@@ -15,7 +15,7 @@ public class VisiteDao {
 				.execReqSelection("select * from VISITE where REFERENCE='" + referenceVisite + "'");
 		try {
 			if (reqSelection.next()) {
-				unMedecin = MedecinDao.rechercher(reqSelection.getString(4));
+				unMedecin = MedecinDao.Rechercher(reqSelection.getString(4));
 				unVisiteur = VisiteurDao.rechercher(reqSelection.getString(5));
 				uneVisite = new Visite(reqSelection.getString(1), reqSelection.getDate(2),
 						reqSelection.getString(3), unMedecin, unVisiteur);

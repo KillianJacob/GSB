@@ -22,7 +22,7 @@ public class MedecinService {
 			if (unCodeMedecin == null) {
 				throw new Exception("Donnée obligatoire : code");
 			}
-			unMedecin = MedecinDao.rechercher(unCodeMedecin);
+			unMedecin = MedecinDao.Rechercher(unCodeMedecin);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}

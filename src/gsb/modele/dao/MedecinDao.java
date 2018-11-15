@@ -37,8 +37,8 @@ public static int SupprimerMedecin(Medecin med){
 	ConnexionMySql.fermerConnexionBd();
 	return result;	
 }
-
-	public static Medecin rechercher(String codeMedecin) {
+	// Recherche par code Medecin
+	public static Medecin Rechercher(String codeMedecin) {
 		Medecin unMedecin = null;
 		Localite uneLocalite = null;
 		ResultSet reqSelection = ConnexionMySql
@@ -66,7 +66,7 @@ public static int SupprimerMedecin(Medecin med){
 		try {
 			while (reqSelection.next()) {
 				String codeMedecin = reqSelection.getString(1);
-				collectionDesMedecins.add(MedecinDao.rechercher(codeMedecin));
+				collectionDesMedecins.add(MedecinDao.Rechercher(codeMedecin));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -81,7 +81,7 @@ public static int SupprimerMedecin(Medecin med){
 		try {
 			while (reqSelection.next()) {
 				String codeMedecin = reqSelection.getString(1);
-				diccoDesMedecins.put(codeMedecin, MedecinDao.rechercher(codeMedecin));
+				diccoDesMedecins.put(codeMedecin, MedecinDao.Rechercher(codeMedecin));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

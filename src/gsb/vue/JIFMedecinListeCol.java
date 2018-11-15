@@ -92,7 +92,7 @@ public class JIFMedecinListeCol extends JInternalFrame implements ActionListener
 	public void actionPerformed(ActionEvent arg0) {
 		Object source = arg0.getSource();
 		if (source == JBafficherFiche) {
-			Medecin unMedecin = MedecinDao.rechercher(JTcodeMedecin.getText());
+			Medecin unMedecin = MedecinDao.Rechercher(JTcodeMedecin.getText());
 			if (unMedecin != null) {
 				fenetreContainer.ouvrirFenetre(new JIFMedecinFiche(unMedecin));
 			}

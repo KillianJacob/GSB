@@ -1,6 +1,9 @@
 package gsb.tests.units;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotSame;
+
+import java.util.HashMap;
 
 import org.junit.After;
 import org.junit.Before;
@@ -8,8 +11,10 @@ import org.junit.Test;
 
 import gsb.modele.Localite;
 import gsb.modele.Medecin;
+import gsb.modele.Medicament;
 import gsb.modele.dao.LocaliteDao;
 import gsb.modele.dao.MedecinDao;
+import gsb.modele.dao.MedicamentDao;
 
 public class MedecinDaoTestUnits {
 
@@ -36,7 +41,7 @@ public class MedecinDaoTestUnits {
 	}
 	
 	@Test
-	public void testAjouterLocalite() {
+	public void testAjouterMedecin() {
 		
 		Medecin medecinTest = new Medecin ("codeMed", "String nom", "String prenom", "String adresse", localite, "String telephone",
 				"String potentiel"," String specialite");
@@ -45,4 +50,10 @@ public class MedecinDaoTestUnits {
 
 
 	}
+	
+	@Test
+	public void testRechercher() {
+		// par code medecin
+		assertEquals(medecin.getCodeMed(),MedecinDao.Rechercher("TEST").getCodeMed());
+	}	
 }
