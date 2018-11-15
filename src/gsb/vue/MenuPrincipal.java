@@ -59,7 +59,10 @@ public class MenuPrincipal extends JFrame implements ActionListener {
 		
 		Dimension DimMax = Toolkit.getDefaultToolkit().getScreenSize();
 		
-		DimMax.setSize(DimMax.getWidth()/2, DimMax.getHeight()/2);
+		//DimMax.setSize(DimMax.getWidth()/2, DimMax.getHeight()/2);
+		
+		DimMax.setSize(1920/2, 1200/2);
+		
 		
 		setSize(DimMax);
 		this.setResizable(false);
