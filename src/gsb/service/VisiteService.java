@@ -20,4 +20,16 @@ public class VisiteService {
 
 		return uneVisite;
 	}
+	
+	public static int AjouterVisite(Visite uneVisite) throws Exception {
+		if(uneVisite.getReference()==null
+				||uneVisite.getDate()==null
+				||uneVisite.getCommentaire()==null
+				||uneVisite.getUnVisiteur().getMatricule()==null
+				||uneVisite.getUnMedecin().getCodeMed()==null
+		){
+			throw new Exception("Donnée null");
+		}
+		return 0;
+	}
 }
