@@ -12,6 +12,7 @@ import org.junit.Test;
 import gsb.modele.Localite;
 import gsb.modele.Medicament;
 import gsb.modele.Visiteur;
+import gsb.modele.dao.LocaliteDao;
 import gsb.modele.dao.MedicamentDao;
 import gsb.modele.dao.VisiteurDao;
 
@@ -30,14 +31,18 @@ public class MedicamentDaoTestUnits {
 		visiteur = new Visiteur("test", "", "", "", "", "",
 				loc, "", new Date(0), 0, "", "");
 		
+		LocaliteDao.AjouterLocalite(loc);
+		
 		VisiteurDao.AjouterVisiteur(visiteur);
 	}
 
 	@After
 	public void tearDown() throws Exception {
 		
+		MedicamentDao.SupprimerStock(visiteur.getMatricule(), medicament.getDepotLegal());
 		MedicamentDao.SupprimerMedicament(medicament);
-		
+		VisiteurDao.SupprimerVisiteur(visiteur);
+		LocaliteDao.SupprimerLocalite(loc);
 	}
 
 	
@@ -55,16 +60,21 @@ public class MedicamentDaoTestUnits {
 	public void testAjouterMedicamentStocker() {
 		
 		
-		MedicamentDao.AjouterMedicamentStockerByVisiteur(medicament.getDepotLegal(),visiteur.getMatricule() , 1);
+		MedicamentDao.AjouterMedicamentStockerByVisiteur(medicament.getDepotLegal(),visiteur.getMatricule() ,1);
 		boolean resultat = false;
 		
 		HashMap<Medicament,Integer> res = MedicamentDao.ListeMedicamentStockerByVisiteur(visiteur.getMatricule());
 		
-		if(res.containsKey(medicament)){
+		for(Medicament med : res.keySet()){
 			
-			resultat = true;
+			if(med.getDepotLegal().equals(medicament.getDepotLegal())){
+				
+				resultat = true;
+				
+			}
 			
 		}
+	
 		
 		assertEquals(true,resultat);
 	

@@ -47,6 +47,16 @@ public class VisiteurDao {
 		
 	}	
 	
+	public static int SupprimerVisiteur(Visiteur visiteur){
+		
+		int result = 0;
+		String requette = "DELETE FROM VISITEUR WHERE MATRICULE='" + visiteur.getMatricule() + "';";
+		result = ConnexionMySql.execReqMaj(requette);
+		ConnexionMySql.fermerConnexionBd();
+		return result;		
+	}
+	
+	
 	public static boolean VisiteurExist(String matricule){
 
 		boolean result = false;;

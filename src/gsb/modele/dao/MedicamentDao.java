@@ -65,6 +65,15 @@ public class MedicamentDao {
 		ConnexionMySql.fermerConnexionBd();
 		return result;
 	}
+
+	public static int SupprimerStock(String matricule,String depot){
+		
+		int result = 0;
+		String requette = "DELETE FROM STOCKER WHERE MED_DEPOTLEGAL='" + depot + "' AND MATRICULE_VISITEUR='" + depot + "';";
+		result = ConnexionMySql.execReqMaj(requette);
+		ConnexionMySql.fermerConnexionBd();
+		return result;		
+	}
 	
 	public static int AjouterMedicamentStockerByVisiteur(String DepotLegal,String Matricule,Integer qte){
 		
