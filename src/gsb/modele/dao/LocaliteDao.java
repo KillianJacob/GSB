@@ -7,6 +7,8 @@
 package gsb.modele.dao;
 
 import gsb.modele.Localite;
+import gsb.modele.Medicament;
+import gsb.modele.Visiteur;
 
 import java.sql.ResultSet;
 
@@ -35,4 +37,24 @@ public class LocaliteDao {
 		return uneLocalite;
 	}
 
+	public static int AjouterLocalite(Localite loc){
+			
+			int result = 0;
+			String requette = "INSERT INTO `LOCALITE` (`CODEPOSTAL`, `VILLE`) VALUES ('" + loc.getCodePostal() + "','" + loc.getVille() + "');";
+			result = ConnexionMySql.execReqMaj(requette);
+			ConnexionMySql.fermerConnexionBd();
+			return result;
+			
+	
+	}
+	
+	public static int SupprimerLocalite(Localite loc){
+		
+		int result = 0;
+		String requette = "DELETE FROM LOCALITE WHERE CODEPOSTAL='" + loc.getCodePostal() + "';";
+		result = ConnexionMySql.execReqMaj(requette);
+		ConnexionMySql.fermerConnexionBd();
+		return result;		
+	}
+	
 }

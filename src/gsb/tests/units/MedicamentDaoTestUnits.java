@@ -19,14 +19,17 @@ public class MedicamentDaoTestUnits {
 
 	Medicament medicament;
 	Visiteur visiteur;
+	Localite loc;
 	
 	@Before
 	public void setUp() throws Exception {
 		
 		medicament = new Medicament("TEST","","","","",0.0F,"","");
 		MedicamentDao.AjouterMedicament(medicament);
+		loc = new Localite("code","ville");
 		visiteur = new Visiteur("test", "", "", "", "", "",
-				new Localite("",""), "", new Date(0), 0, "", ""); 
+				loc, "", new Date(0), 0, "", "");
+		
 		VisiteurDao.AjouterVisiteur(visiteur);
 	}
 

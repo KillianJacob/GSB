@@ -36,7 +36,7 @@ public class MedicamentDao {
 	public static int ModifierMedicamentStocker(String matricule,String depot, String qte){
 		
 		int result = 0;
-		String requette = "UPDATE `stocker` SET `QTESTOCK` = '"+ qte + "' WHERE `stocker`.`MATRICULE_VISITEUR` = '" + matricule + "' AND `stocker`.`MED_DEPOTLEGAL` = '" + depot + "';";
+		String requette = "UPDATE `STOCKER` SET `QTESTOCK` = '"+ qte + "' WHERE `stocker`.`MATRICULE_VISITEUR` = '" + matricule + "' AND `stocker`.`MED_DEPOTLEGAL` = '" + depot + "';";
 		result = ConnexionMySql.execReqMaj(requette);
 		ConnexionMySql.fermerConnexionBd();
 		return result;
@@ -69,7 +69,7 @@ public class MedicamentDao {
 	public static int AjouterMedicamentStockerByVisiteur(String DepotLegal,String Matricule,Integer qte){
 		
 		int result = 0;
-		String requette = "INSERT INTO `stocker` (`MATRICULE_VISITEUR`, `MED_DEPOTLEGAL`, `QTESTOCK`) VALUES ('" + Matricule + "', '" + DepotLegal + "', '" + qte + "');";
+		String requette = "INSERT INTO `STOCKER` (`MATRICULE_VISITEUR`, `MED_DEPOTLEGAL`, `QTESTOCK`) VALUES ('" + Matricule + "', '" + DepotLegal + "', '" + qte + "');";
 		result = ConnexionMySql.execReqMaj(requette);
 		ConnexionMySql.fermerConnexionBd();
 		return result;
@@ -169,21 +169,6 @@ public class MedicamentDao {
 		
 		return result;
 		
-	}
-	
-	public static HashMap<String, Medicament> retournerDictionnaireDesMedicament() {
-		HashMap<String, Medicament> diccoDesMedicament = new HashMap<String, Medicament>();
-		ResultSet reqSelection = ConnexionMySql.execReqSelection("select MED_DEPOTLEGAL from MEDICAMENT");
-		try {
-			while (reqSelection.next()) {
-				String codeMedicament = reqSelection.getString(1);
-				diccoDesMedicament.put(codeMedicament, MedicamentDao.RechercherMedicament(codeMedicament));
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-			System.out.println("erreur retournerDiccoDesMedicaments()");
-		}
-		return diccoDesMedicament;
 	}
 	
 	

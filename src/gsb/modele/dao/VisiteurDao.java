@@ -40,7 +40,7 @@ public class VisiteurDao {
 	public static int AjouterVisiteur(Visiteur visiteur){
 		
 		int result = 0;
-		String requette = "INSERT INTO `visiteur` (`MATRICULE`, `NOM`, `PRENOM`, `LOGIN`, `MDP`, `ADRESSE`, `CODEPOSTAL`, `DATEENTREE`, `CODEUNIT`, `NOMUNIT`) VALUES ('"+ visiteur.getMatricule() + "', '" + visiteur.getNom() + "', '" + visiteur.getPrenom() + "', '" + visiteur.getLogin() + "', '" + visiteur.getMdp() + "', '" + visiteur.getAdresse() + "', '" +"code" + "', '" + visiteur.getDateEntree() + "', '" + visiteur.getCodeUnite() + "', '" + visiteur.getNomUnite() + "');";
+		String requette = "INSERT INTO `VISITEUR` (`MATRICULE`, `NOM`, `PRENOM`, `LOGIN`, `MDP`, `ADRESSE`, `CODEPOSTAL`, `DATEENTREE`, `CODEUNIT`, `NOMUNIT`) VALUES ('"+ visiteur.getMatricule() + "', '" + visiteur.getNom() + "', '" + visiteur.getPrenom() + "', '" + visiteur.getLogin() + "', '" + visiteur.getMdp() + "', '" + visiteur.getAdresse() + "', '" +"code" + "', '" + visiteur.getDateEntree() + "', '" + visiteur.getCodeUnite() + "', '" + visiteur.getNomUnite() + "');";
 		result = ConnexionMySql.execReqMaj(requette);
 		ConnexionMySql.fermerConnexionBd();
 		return result;

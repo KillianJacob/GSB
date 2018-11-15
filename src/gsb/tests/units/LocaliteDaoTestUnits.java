@@ -36,7 +36,7 @@ public class LocaliteDaoTestUnits {
 	@Test
 	public void testAjouterLocalite() {
 		
-		Medicament localiteTest = new Localite("00000","Ville");
+		Localite localiteTest = new Localite("00000","Ville");
 		assertNotSame(-1,LocaliteDao.AjouterLocalite(localiteTest));
 		LocaliteDao.SupprimerLocalite(localiteTest);
 		
