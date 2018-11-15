@@ -10,6 +10,7 @@ import gsb.modele.Localite;
 import gsb.modele.Medecin;
 import gsb.modele.Medicament;
 import gsb.modele.dao.LocaliteDao;
+import gsb.modele.dao.MedecinDao;
 import gsb.modele.dao.MedicamentDao;
 
 public class MedecinDaoTestUnits {
@@ -22,9 +23,9 @@ public class MedecinDaoTestUnits {
 		
 		localite = new Localite("00000","Ville");
 		LocaliteDao.AjouterLocalite(localite);
-		Medecin = "codeMed", "String nom", "String prenom", "String adresse", localite, "String telephone",
-				"String potentiel"," String specialite")
-		MedicamentDao.AjouterMedicament(medicament);
+		medecin = new Medecin ("codeMed", "nom", "prenom", "adresse", localite, "telephone",
+				"potentiel", "specialite");
+		MedecinDao.AjouterMedecin(medecin);
 		
 		
 	}
@@ -32,16 +33,17 @@ public class MedecinDaoTestUnits {
 	@After
 	public void tearDown() throws Exception {
 		
-		LocaliteDao.SupprimerLocalite(localite);
+		MedecinDao.SupprimerMedecin(medecin);
 		
 	}
 	
 	@Test
 	public void testAjouterLocalite() {
 		
-		Medicament localiteTest = new Localite("00000","Ville");
-		assertNotSame(-1,LocaliteDao.AjouterLocalite(localiteTest));
-		LocaliteDao.SupprimerLocalite(localiteTest);
+		Medecin medecinTest = new Medecin ("codeMed", "String nom", "String prenom", "String adresse", localite, "String telephone",
+				"String potentiel"," String specialite");
+		assertNotSame(-1,MedecinDao.AjouterMedecin(medecinTest));
+		MedecinDao.SupprimerMedecin(medecinTest);
 
 
 	}
