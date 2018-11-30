@@ -16,16 +16,19 @@ import gsb.modele.dao.MedecinDao;
  */
 public class MedecinService {
 
-	public static Medecin rechercherMedecin(String unCodeMedecin) {
+	public static Medecin rechercherMedecin(String unCodeMedecin) throws Exception {
 		Medecin unMedecin = null;
-		try {
 			if (unCodeMedecin == null) {
 				throw new Exception("Donnée obligatoire : code");
 			}
+			if(!MedecinDao.MedecinExist(unCodeMedecin)){
+				
+				throw new Exception("Medecin inexistant");				
+				
+			}
+			
 			unMedecin = MedecinDao.Rechercher(unCodeMedecin);
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
+		
 		return unMedecin;
 	}
 

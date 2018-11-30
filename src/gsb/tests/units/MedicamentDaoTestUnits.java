@@ -29,7 +29,7 @@ public class MedicamentDaoTestUnits {
 		MedicamentDao.AjouterMedicament(medicament);
 		loc = new Localite("code","ville");
 		visiteur = new Visiteur("test", "", "", "", "", "",
-				"",loc, "", new Date(0), 0, "", "");
+				loc, new Date(0), "", "");
 		
 		LocaliteDao.AjouterLocalite(loc);
 		
@@ -89,7 +89,21 @@ public class MedicamentDaoTestUnits {
 		
 	}
 	
+	@Test
+	public void testModifierMedicament() {
+		
+		medicament.setEffets("test");
+		
+		assertNotEquals(-1,MedicamentDao.ModifierMedicament(medicament));
+		
+	}	
 	
-	
+	@Test
+	public void testSupprimerMedicament() {
+		
+		int res = MedicamentDao.SupprimerMedicament(medicament);
+		assertNotEquals(-1,res);
+		
+	}
 
 }

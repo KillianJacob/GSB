@@ -60,6 +60,31 @@ public static int SupprimerMedecin(Medecin med){
 		return unMedecin;
 	}
 
+	public static boolean MedecinExist(String codeMedecin){
+		
+		boolean result = false;;
+		String requette = "SELECT COUNT(*) FROM MEDECIN WHERE `CODEMED`= '" + codeMedecin + "';";
+		ResultSet reqSelection = ConnexionMySql.execReqSelection(requette);
+		try {
+			if(reqSelection.next()) {
+				if(reqSelection.getInt(1) > 0){
+					
+					result = true;
+					
+				}
+			}
+			;
+		} catch (Exception e) {
+			System.out.println("erreur reqSelection.next() pour la requête - " + requette);
+			e.printStackTrace();
+		}
+		ConnexionMySql.fermerConnexionBd();			
+		
+		
+		return result;
+		
+	}
+	
 	public static ArrayList<Medecin> retournerCollectionDesMedecins() {
 		ArrayList<Medecin> collectionDesMedecins = new ArrayList<Medecin>();
 		ResultSet reqSelection = ConnexionMySql.execReqSelection("select CODEMED from MEDECIN");

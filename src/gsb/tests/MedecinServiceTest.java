@@ -20,7 +20,13 @@ public class MedecinServiceTest {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		Medecin unMedecin = MedecinService.rechercherMedecin("m002");
+		Medecin unMedecin = null;
+		try {
+			unMedecin = MedecinService.rechercherMedecin("m002");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		System.out.println(unMedecin.getNom());
 		System.out.println(unMedecin.getPrenom());
 		System.out.println(unMedecin.getAdresse());

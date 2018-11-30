@@ -11,14 +11,14 @@ public class Visiteur {
 	protected String adresse;
 	protected Localite uneLocalite;
 	protected String telephone;
-	protected Date dateEntree;
+	protected java.sql.Date dateEntree;
 	protected int prime;
 	protected String codeUnite;
 	protected String nomUnite;
 	protected String codePostal;
 
-	public Visiteur(String matricule, String nom, String prenom, String login, String mdp,String CP, String adresse,
-			Localite uneLocalite, String telephone, Date dateEntree, int prime, String codeUnite, String nomUnite) {
+	public Visiteur(String matricule, String nom, String prenom, String login, String mdp, String adresse,
+			Localite uneLocalite, java.sql.Date dateEntree, String codeUnite, String nomUnite) {
 		this.matricule = matricule;
 		this.nom = nom;
 		this.prenom = prenom;
@@ -26,12 +26,9 @@ public class Visiteur {
 		this.mdp = mdp;
 		this.adresse = adresse;
 		this.uneLocalite = uneLocalite;
-		this.telephone = telephone;
 		this.dateEntree = dateEntree;
-		this.prime = prime;
 		this.codeUnite = codeUnite;
 		this.nomUnite = nomUnite;
-		this.codePostal = CP;
 	}
 
 	public String getMatricule() {
@@ -110,7 +107,7 @@ public class Visiteur {
 		return dateEntree;
 	}
 
-	public void setDateEntree(Date dateEntree) {
+	public void setDateEntree(java.sql.Date dateEntree) {
 		this.dateEntree = dateEntree;
 	}
 

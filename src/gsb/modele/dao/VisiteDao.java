@@ -43,16 +43,41 @@ public class VisiteDao {
 	public static int AjouterVisite(Visite visite){
 		
 		int result = 0;
-		String requette = "INSERT INTO `visite` (`REFERENCE`, `DATEVISITE`, `COMMENTAIRE`, `MATRICULE`, `CODEMED`) VALUES ('" + visite.getReference() + "', '" + visite.getDate().toString() + "', '" + visite.getCommentaire() + "', '" + visite.getUnVisiteur() + "', '" + visite.getUnMedecin() + "')";
+		String requette = "INSERT INTO `VISITE` (`REFERENCE`, `DATEVISITE`, `COMMENTAIRE`, `MATRICULE`, `CODEMED`) VALUES ('" + visite.getReference() + "', '" + visite.getDate().toString() + "', '" + visite.getCommentaire() + "', '" + visite.getUnVisiteur().getMatricule() + "', '" + visite.getUnMedecin().getCodeMed() + "')";
 		result = ConnexionMySql.execReqMaj(requette);
 		ConnexionMySql.fermerConnexionBd();
 		return result;
+	}
+
+	public static boolean VisiteExist(String ref){
+		
+		boolean result = false;;
+		String requette = "SELECT COUNT(*) FROM VISITE WHERE `REFERENCE`= '" + ref + "';";
+		ResultSet reqSelection = ConnexionMySql.execReqSelection(requette);
+		try {
+			if(reqSelection.next()) {
+				if(reqSelection.getInt(1) > 0){
+					
+					result = true;
+					
+				}
+			}
+			;
+		} catch (Exception e) {
+			System.out.println("erreur reqSelection.next() pour la requête - " + requette);
+			e.printStackTrace();
+		}
+		ConnexionMySql.fermerConnexionBd();			
+		
+		
+		return result;
+		
 	}
 	
 	public static int ModifierVisite(Visite visite){
 		
 		int result = 0;
-		String requette = "UPDATE VISITE SET `REFERENCE` = "+ visite.getReference() +", `DATEVISITE` = "+ visite.getDate() +", `COMMENTAIRE` = "+ visite.getCommentaire() +", `MATRICULE`= "+ visite.getUnVisiteur() +", `CODEMED` = " + visite.getUnMedecin() + ";";
+		String requette = "UPDATE VISITE SET `DATEVISITE` = '"+ visite.getDate() +"', `COMMENTAIRE` = '"+ visite.getCommentaire() +"', `MATRICULE`= '"+ visite.getUnVisiteur().getMatricule() +"', `CODEMED` = '" + visite.getUnMedecin().getCodeMed() + "' WHERE REFERENCE='" + visite.getReference() + "';";
 		result = ConnexionMySql.execReqMaj(requette);
 		ConnexionMySql.fermerConnexionBd();
 		return result;		

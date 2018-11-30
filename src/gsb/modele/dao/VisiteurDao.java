@@ -1,6 +1,7 @@
 package gsb.modele.dao;
 
 import java.sql.ResultSet;
+import java.util.Date;
 
 import gsb.modele.Localite;
 import gsb.modele.Medecin;
@@ -12,7 +13,7 @@ public class VisiteurDao {
 	
 	public static Visiteur rechercher(String MatriculeVisiteur) {
 		Visiteur unVisiteur = null;
-		String req = "select * from VISITEUR where MATRICULE='" + MatriculeVisiteur + "';";
+		String req = "select * from VISITEUR where `MATRICULE`='" + MatriculeVisiteur + "';";
 		ResultSet reqSelection = ConnexionMySql
 				.execReqSelection(req);
 		try {
@@ -20,8 +21,18 @@ public class VisiteurDao {
 				
 				Localite loc = LocaliteDao.rechercher(reqSelection.getString(7));
 				
-				unVisiteur = new Visiteur(reqSelection.getString(0),reqSelection.getString(1),reqSelection.getString(2)
-						,reqSelection.getString(3),reqSelection.getString(4),reqSelection.getString(5),reqSelection.getString(6),loc,reqSelection.getString(8),reqSelection.getDate(9),reqSelection.getInt(10),reqSelection.getString(11),reqSelection.getString(12));
+				unVisiteur = new Visiteur(
+						reqSelection.getString(1),
+						reqSelection.getString(2), 
+						reqSelection.getString(3), 
+						reqSelection.getString(4), 
+						reqSelection.getString(5), 
+						reqSelection.getString(6),
+						loc,
+						reqSelection.getDate(8), 
+						reqSelection.getString(9), 
+						reqSelection.getString(10)
+						);
 				
 			}
 			;
@@ -36,14 +47,14 @@ public class VisiteurDao {
 	public static int AjouterVisiteur(Visiteur visiteur){
 		
 		int result = 0;
-		String requette = "INSERT INTO `visiteur` (`MATRICULE`, `NOM`, `PRENOM`, `LOGIN`, `MDP`, `ADRESSE`, `CODEPOSTAL`, `DATEENTREE`, `CODEUNIT`, `NOMUNIT`) VALUES ("
+		String requette = "INSERT INTO `VISITEUR` (`MATRICULE`, `NOM`, `PRENOM`, `LOGIN`, `MDP`, `ADRESSE`, `CODEPOSTAL`, `DATEENTREE`, `CODEUNIT`, `NOMUNIT`) VALUES ("
 				+ "'" + visiteur.getMatricule() + "', "
 				+ "'" + visiteur.getNom() + "', "
 				+ "'" + visiteur.getPrenom() + "', "
 				+ "'" + visiteur.getLogin() + "', "
 				+ "'" + visiteur.getMdp() + "', "
 				+ "'" + visiteur.getAdresse() + "', "
-				+ "'" + visiteur.getCodePostal() + "', "
+				+ "'" + visiteur.getUneLocalite().getCodePostal() + "', "
 				+ "'" + visiteur.getDateEntree().toString() + "', "
 				+ "'" + visiteur.getCodeUnite() + "', "
 				+ " '" + visiteur.getNomUnite() + "');";
@@ -55,7 +66,7 @@ public class VisiteurDao {
 	public static int SupprimerVisiteur(String matricule){
 		
 		int result = 0;
-		String requette = "DELETE FROM VISITEUR WHERE MATRICULE='" + matricule + "';";
+		String requette = "DELETE FROM VISITEUR WHERE `MATRICULE`='" + matricule + "';";
 		result = ConnexionMySql.execReqMaj(requette);
 		ConnexionMySql.fermerConnexionBd();
 		return result;		
@@ -64,7 +75,7 @@ public class VisiteurDao {
 	public static int SupprimerVisiteur(Visiteur visiteur){
 		
 		int result = 0;
-		String requette = "DELETE FROM VISITEUR WHERE MATRICULE='" + visiteur.getMatricule() + "';";
+		String requette = "DELETE FROM VISITEUR WHERE `MATRICULE`='" + visiteur.getMatricule() + "';";
 		result = ConnexionMySql.execReqMaj(requette);
 		ConnexionMySql.fermerConnexionBd();
 		return result;		

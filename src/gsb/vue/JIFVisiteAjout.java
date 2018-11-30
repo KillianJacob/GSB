@@ -7,10 +7,25 @@ import javax.swing.JTextField;
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
+
+import gsb.modele.Medecin;
+import gsb.modele.Visite;
+import gsb.modele.Visiteur;
+import gsb.modele.dao.VisiteDao;
+import gsb.service.MedecinService;
+import gsb.service.VisiteService;
+import gsb.service.VisiteurService;
+
 import java.awt.Font;
 
 public class JIFVisiteAjout extends JInternalFrame {
@@ -89,6 +104,38 @@ public class JIFVisiteAjout extends JInternalFrame {
 		getContentPane().add(panel_1, BorderLayout.SOUTH);
 		
 		JButton btnNewButton = new JButton("Ajouter");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Visiteur vis = null;
+				Medecin med = null;
+				SimpleDateFormat sdf1 = new SimpleDateFormat("dd-MM-yyyy");
+				java.sql.Date sqlStartDate = null;
+				
+				try {
+					vis = VisiteurService.RechercherVisiteur(textField_4.getText());
+					med = MedecinService.rechercherMedecin(textField_3.getText());
+					java.util.Date date = sdf1.parse(textField_1.getText());
+					sqlStartDate = new java.sql.Date(date.getTime()); 
+					Visite visite = new Visite(textField.getText(),sqlStartDate,textField_2.getText(),med,vis);
+					if(VisiteService.AjouterVisite(visite) != 0){
+						
+						
+						JOptionPane.showMessageDialog(null, "Ajout reussi");
+						
+						
+					}
+				} catch (Exception e1) {
+					
+					JOptionPane.showMessageDialog(null, "Erreur, "+ e1.getMessage());
+					e1.printStackTrace();
+				}
+				 
+				
+				
+				
+			}
+		});
 		panel_1.add(btnNewButton);
 
 	}

@@ -30,6 +30,12 @@ public class VisiteService {
 		){
 			throw new Exception("Donnée null");
 		}
-		return 0;
+		if(VisiteDao.VisiteExist(uneVisite.getReference())){
+			
+			
+			throw new Exception("La visite existe déja");			
+		}
+		
+		return VisiteDao.AjouterVisite(uneVisite);
 	}
 }

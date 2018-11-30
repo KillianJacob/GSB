@@ -157,7 +157,8 @@ public class MedicamentService {
 		
 		if(CheckIfAlreadyStock(matricule,depot)){
 			
-			MedicamentDao.ModifierMedicamentStocker(matricule, depot, qte);
+			int prevQte = MedicamentDao.RechercherQteStock(depot, matricule);
+			MedicamentDao.ModifierMedicamentStocker(matricule, depot, Integer.toString(prevQte + Integer.parseInt(qte)));
 			
 		}
 		else{
