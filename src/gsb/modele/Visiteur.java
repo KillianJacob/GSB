@@ -15,8 +15,9 @@ public class Visiteur {
 	protected int prime;
 	protected String codeUnite;
 	protected String nomUnite;
+	protected String codePostal;
 
-	public Visiteur(String matricule, String nom, String prenom, String login, String mdp, String adresse,
+	public Visiteur(String matricule, String nom, String prenom, String login, String mdp,String CP, String adresse,
 			Localite uneLocalite, String telephone, Date dateEntree, int prime, String codeUnite, String nomUnite) {
 		this.matricule = matricule;
 		this.nom = nom;
@@ -30,6 +31,7 @@ public class Visiteur {
 		this.prime = prime;
 		this.codeUnite = codeUnite;
 		this.nomUnite = nomUnite;
+		this.codePostal = CP;
 	}
 
 	public String getMatricule() {
@@ -40,6 +42,14 @@ public class Visiteur {
 		this.matricule = matricule;
 	}
 
+	public String getCodePostal() {
+		return this.codePostal;
+	}
+
+	public void setCodePostal(String codepostal) {
+		this.codePostal = codepostal;
+	}
+	
 	public String getNom() {
 		return nom;
 	}

@@ -29,7 +29,7 @@ public class MedicamentDaoTestUnits {
 		MedicamentDao.AjouterMedicament(medicament);
 		loc = new Localite("code","ville");
 		visiteur = new Visiteur("test", "", "", "", "", "",
-				loc, "", new Date(0), 0, "", "");
+				"",loc, "", new Date(0), 0, "", "");
 		
 		LocaliteDao.AjouterLocalite(loc);
 		
