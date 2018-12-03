@@ -106,6 +106,13 @@ public class VisiteurDao {
 		
 	}
 	
-	
+	public static int ModifierVisiteur(Visiteur visiteur){
+		
+		int result = 0;
+		String requette = "UPDATE `visiteur` SET `NOM`='" + visiteur.getNom() + "',`PRENOM`='" + visiteur.getPrenom() + "',`LOGIN`='" + visiteur.getNom() + "',`MDP`='" + visiteur.getMdp() + "',`ADRESSE`='" + visiteur.getAdresse() + "',`CODEPOSTAL`='" + visiteur.getUneLocalite().getCodePostal() + "',`DATEENTREE`='" + visiteur.getDateEntree() + "',`CODEUNIT`='" + visiteur.getCodeUnite() + "',`NOMUNIT`='" + visiteur.getNomUnite() + "' WHERE MATRICULE='" + visiteur.getMatricule() + "'";
+		result = ConnexionMySql.execReqMaj(requette);
+		ConnexionMySql.fermerConnexionBd();
+		return result;		
+	}
 
 }

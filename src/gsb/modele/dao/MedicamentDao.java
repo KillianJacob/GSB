@@ -95,6 +95,7 @@ public class MedicamentDao {
 				result = new Medicament(reqSelection.getString(1), reqSelection.getString(2), reqSelection.getString(3),
 						reqSelection.getString(4), reqSelection.getString(5), reqSelection.getFloat(6), reqSelection.getString(7),
 						reqSelection.getString(8));
+			
 			}
 			;
 		} catch (Exception e) {
