@@ -150,6 +150,11 @@ public class MenuPrincipal extends JFrame implements ActionListener {
 			else if (ChoixOption.equals("Ajout Visite")) {
 				ouvrirFenetre(new JIFVisiteAjout());
 			}
+			else if(ChoixOption.equals("Consultation Visite") || ChoixOption == "Consultation Visite"){
+			
+				ouvrirFenetre( new JIFVisiteCons(null) );
+				
+			}
 		}
 
 	}

@@ -1,6 +1,7 @@
 package gsb.modele.dao;
 
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 import gsb.modele.Medecin;
 import gsb.modele.Medicament;
@@ -83,5 +84,27 @@ public class VisiteDao {
 		return result;		
 	}
 	
-	
+
+	public static ArrayList<Visite> rechercherTouteVisite() {
+		ArrayList<Visite> list = new ArrayList<Visite>();
+		Visite uneVisite = null;
+		Medecin unMedecin = null;
+		Visiteur unVisiteur = null;
+		ResultSet reqSelection = ConnexionMySql
+				.execReqSelection("select * from VISITE");
+		try {
+			if (reqSelection.next()) {
+				unMedecin = MedecinDao.Rechercher(reqSelection.getString(4));
+				unVisiteur = VisiteurDao.rechercher(reqSelection.getString(5));
+				list.add(new Visite(reqSelection.getString(1), reqSelection.getDate(2),
+						reqSelection.getString(3), unMedecin, unVisiteur));
+			}
+			;
+		} catch (Exception e) {
+			System.out.println("erreur reqSelection.next() pour la requête ");
+			e.printStackTrace();
+		}
+		ConnexionMySql.fermerConnexionBd();
+		return list;
+	}
 }

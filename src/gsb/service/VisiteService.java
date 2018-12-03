@@ -1,5 +1,7 @@
 package gsb.service;
 
+import java.util.ArrayList;
+
 import gsb.modele.Visite;
 import gsb.modele.dao.VisiteDao;
 
@@ -19,6 +21,16 @@ public class VisiteService {
 		}
 
 		return uneVisite;
+	}
+
+	public static ArrayList<Visite> rechercherTouteVisite(){
+		
+		ArrayList<Visite> res = new ArrayList<Visite>();
+		
+		res = VisiteDao.rechercherTouteVisite();
+		
+		return res;
+		
 	}
 	
 	public static int AjouterVisite(Visite uneVisite) throws Exception {
