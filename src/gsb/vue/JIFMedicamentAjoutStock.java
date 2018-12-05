@@ -16,7 +16,12 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 
+import gsb.modele.Medecin;
+import gsb.modele.Medicament;
+import gsb.modele.Visiteur;
+import gsb.service.MedecinService;
 import gsb.service.MedicamentService;
+import gsb.service.VisiteurService;
 
 import java.awt.FlowLayout;
 import javax.swing.JCheckBox;
@@ -27,6 +32,8 @@ import java.awt.Insets;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.awt.event.ActionEvent;
 
 public class JIFMedicamentAjoutStock extends JInternalFrame {
@@ -84,7 +91,7 @@ public class JIFMedicamentAjoutStock extends JInternalFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				try {
-					MedicamentService.AJouterMedicamentStocker(textField.getText(), textField_1.getText(), textField_2.getText());
+					MedicamentService.AJouterMedicamentStocker(textField.getText().substring(0,textField_2.getText().indexOf("-")), textField_1.getText().substring(0,textField_1.getText().indexOf("-")), textField_2.getText());
 					JOptionPane.showMessageDialog(null, "Ajout reussi");
 				} catch (Exception e) {
 					
@@ -120,6 +127,39 @@ public class JIFMedicamentAjoutStock extends JInternalFrame {
 		JLabel lblNewLabel_2 = new JLabel("");
 		panel_1.add(lblNewLabel_2);
 		
+		
+		textField.addFocusListener(new FocusAdapter() {
+		    public void focusLost(FocusEvent e) {
+		    	
+		    	if((textField.getText().indexOf("-") == -1)){
+		    	try {
+					Visiteur vis = VisiteurService.RechercherVisiteur(textField.getText());
+					textField.setText(vis.getMatricule() + " - " + vis.getNom() + " / " + vis.getPrenom() );
+				} catch (Exception e1) {
+
+					textField.setText("");
+				}
+		    	}
+		    	}
+		    	
+		});
+
+		textField_1.addFocusListener(new FocusAdapter() {
+		    public void focusLost(FocusEvent e) {
+		    	
+		    	if((textField_1.getText().indexOf("-") == -1) 
+		    			|| textField_1.getText().indexOf("-") < 4){
+		    	try {
+					Medicament med = MedicamentService.RechercherMedicament(textField_1.getText());
+					textField_1.setText(med.getDepotLegal() + " - " + med.getNomCommercial() );
+				} catch (Exception e1) {
+
+					textField_1.setText("");
+				}
+		    	}
+		    	}
+		    	
+		});
 		
 	}
 
