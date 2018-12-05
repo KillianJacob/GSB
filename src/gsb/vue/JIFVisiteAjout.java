@@ -9,6 +9,8 @@ import javax.swing.JPanel;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 
@@ -113,8 +115,8 @@ public class JIFVisiteAjout extends JInternalFrame {
 				java.sql.Date sqlStartDate = null;
 				
 				try {
-					vis = VisiteurService.RechercherVisiteur(textField_4.getText());
-					med = MedecinService.rechercherMedecin(textField_3.getText());
+					vis = VisiteurService.RechercherVisiteur(textField_4.getText().substring(0,textField_4.getText().indexOf("-")));
+					med = MedecinService.rechercherMedecin(textField_3.getText().substring(0,textField_3.getText().indexOf("-")));
 					java.util.Date date = sdf1.parse(textField_1.getText());
 					sqlStartDate = new java.sql.Date(date.getTime()); 
 					Visite visite = new Visite(textField.getText(),sqlStartDate,textField_2.getText(),med,vis);
@@ -138,6 +140,41 @@ public class JIFVisiteAjout extends JInternalFrame {
 		});
 		panel_1.add(btnNewButton);
 
+		
+		textField_3.addFocusListener(new FocusAdapter() {
+		    public void focusLost(FocusEvent e) {
+		    	
+		    	if((textField_3.getText().indexOf("-") == -1) 
+		    			|| textField_3.getText().indexOf("-") < 5){
+		    	try {
+					Medecin med = MedecinService.rechercherMedecin(textField_3.getText());
+					textField_3.setText(med.getCodeMed() + " - " + med.getNom() + " / " + med.getPrenom() );
+				} catch (Exception e1) {
+
+					textField_3.setText("");
+				}
+		    	}
+		    	}
+		    	
+		});
+		
+		textField_4.addFocusListener(new FocusAdapter() {
+		    public void focusLost(FocusEvent e) {
+		    	
+		    	if((textField_4.getText().indexOf("-") == -1) 
+		    			|| textField_4.getText().indexOf("-") < 5){
+		    	try {
+					Visiteur vis = VisiteurService.RechercherVisiteur(textField_4.getText());
+					textField_4.setText(vis.getMatricule() + " - " + vis.getNom() + " / " + vis.getPrenom() );
+				} catch (Exception e1) {
+
+					textField_4.setText("");
+				}
+		    	}
+		    	}
+		    	
+		});
+		
 	}
 
 }

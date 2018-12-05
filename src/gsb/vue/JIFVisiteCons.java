@@ -205,10 +205,10 @@ public class JIFVisiteCons extends JInternalFrame {
 	
 	public void remplirText(Visite vis){
 		
-		textFieldCodeMed.setText(vis.getUnMedecin().getCodeMed());
+		textFieldCodeMed.setText( vis.getUnMedecin().getCodeMed() + " - " + vis.getUnMedecin().getNom() +  " / " + vis.getUnMedecin().getPrenom());
 		textFieldDate.setText(vis.getDate().toString());
 		textFieldReference.setText(vis.getReference());
-		textFieldVisiteur.setText(vis.getUnVisiteur().getMatricule());	
+		textFieldVisiteur.setText(vis.getUnVisiteur().getMatricule() + " - " + vis.getUnVisiteur().getNom() + " / " + vis.getUnMedecin().getPrenom());	
 		
 		if(vis.getCommentaire().equals("") || vis.getCommentaire() == null){
 
