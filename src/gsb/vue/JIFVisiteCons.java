@@ -1,7 +1,5 @@
 package gsb.vue;
 
-import java.awt.EventQueue;
-
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
@@ -48,7 +46,6 @@ public class JIFVisiteCons extends JInternalFrame {
 		
 			e.printStackTrace();
 		}
-		
 		JPanel panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.NORTH);
 		
@@ -79,9 +76,10 @@ public class JIFVisiteCons extends JInternalFrame {
 		     }
 		}
 		
+		
 		Border border = BorderFactory.createLineBorder(Color.BLACK);
 		
-		JLabel lblNewLabel_2 = new JLabel("Nom Commercial");
+		JLabel lblNewLabel_2 = new JLabel("Reference");
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_1.add(lblNewLabel_2);
 		
@@ -89,7 +87,6 @@ public class JIFVisiteCons extends JInternalFrame {
 		textFieldReference.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_1.add(textFieldReference);
 		textFieldReference.setColumns(10);
-		textFieldReference.setText(vis.getReference());
 		
 		JLabel lblNewLabel_1 = new JLabel("Date de la visite");
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
@@ -119,11 +116,6 @@ public class JIFVisiteCons extends JInternalFrame {
 		panel_1.add(textFieldCodeMed);
 		textFieldCodeMed.setColumns(10);
 		
-		textFieldCodeMed.setText(vis.getUnMedecin().getCodeMed());
-		
-		textFieldCommentaire.setText(vis.getCommentaire());
-		textFieldDate.setText(vis.getDate().toString());
-		
 		JLabel lblEffet_1 = new JLabel("Matricule visiteur");
 		lblEffet_1.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_1.add(lblEffet_1);
@@ -133,17 +125,9 @@ public class JIFVisiteCons extends JInternalFrame {
 		panel_1.add(textFieldVisiteur);
 		textFieldVisiteur.setColumns(10);
 		
-		textFieldVisiteur.setText(vis.getUnVisiteur().getMatricule());
-		
 
 		textFieldVisiteur.setBorder(BorderFactory.createCompoundBorder(border, 
-	            BorderFactory.createEmptyBorder(2, 2, 2, 2)));		
-		
-		
-		JLabel Composant = new JLabel("Composant");
-		Composant.setHorizontalAlignment(SwingConstants.CENTER);
-		panel_1.add(Composant);
-		
+	            BorderFactory.createEmptyBorder(2, 2, 2, 2)));			
 		
 		JPanel panel_2 = new JPanel();
 		getContentPane().add(panel_2, BorderLayout.SOUTH);
@@ -185,7 +169,6 @@ public class JIFVisiteCons extends JInternalFrame {
 		lblEffet.setBorder(border);
 		laelFamillelibelle.setBorder(border);
 		lblEffet_1.setBorder(border);
-		Composant.setBorder(border);
 		
 		textFieldCodeMed.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		textFieldCommentaire.setFont(new Font("Tahoma", Font.PLAIN, 17));
@@ -195,9 +178,9 @@ public class JIFVisiteCons extends JInternalFrame {
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		lblEffet.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		laelFamillelibelle.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		lblEffet_1.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		Composant.setFont(new Font("Tahoma", Font.PLAIN, 17));		
-
+		lblEffet_1.setFont(new Font("Tahoma", Font.PLAIN, 17));	
+		textFieldVisiteur.setFont(new Font("Tahoma", Font.PLAIN, 17));	
+		
 		textFieldCodeMed.setEditable(false);
 		textFieldCommentaire.setEditable(false);
 		textFieldDate.setEditable(false);
@@ -207,24 +190,36 @@ public class JIFVisiteCons extends JInternalFrame {
 		textFieldCodeMed.setBackground(new Color(255, 255, 255));
 		textFieldCommentaire.setBackground(new Color(255, 255, 255));
 		textFieldDate.setBackground(new Color(255, 255, 255));
-		textFieldReference.setBackground(new Color(255, 255, 255));		
-
+		textFieldReference.setBackground(new Color(255, 255, 255));
+		textFieldVisiteur.setBackground(new Color(255, 255, 255));
+		
 		lblNewLabel_1.setBorder(border);	
 		lblNewLabel_2.setBorder(border);
 		lblEffet.setBorder(border);
 		laelFamillelibelle.setBorder(border);
-		lblEffet_1.setBorder(border);
-		Composant.setBorder(border);		
+		lblEffet_1.setBorder(border);		
+		
+		remplirText(vis);
 		
 	}
 	
 	public void remplirText(Visite vis){
 		
 		textFieldCodeMed.setText(vis.getUnMedecin().getCodeMed());
-		textFieldCommentaire.setText(vis.getCommentaire());
 		textFieldDate.setText(vis.getDate().toString());
 		textFieldReference.setText(vis.getReference());
 		textFieldVisiteur.setText(vis.getUnVisiteur().getMatricule());	
+		
+		if(vis.getCommentaire().equals("") || vis.getCommentaire() == null){
+
+			textFieldCommentaire.setText("Aucun commentaire");			
+			
+		}
+		else{
+			
+			textFieldCommentaire.setText(vis.getCommentaire());
+			
+		}
 		
 	}
 	

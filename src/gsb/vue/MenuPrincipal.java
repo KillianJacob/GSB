@@ -89,7 +89,7 @@ public class MenuPrincipal extends JFrame implements ActionListener {
 
 		mVisites = new JMenu("Visites");
 		JMenuItem mA1 = new JMenuItem("Consultation Visite");
-		mE1.addActionListener(this); // installation d'un écouteur d'action
+		mA1.addActionListener(this); // installation d'un écouteur d'action
 		mVisites.add(mA1);
 		JMenuItem mA2 = new JMenuItem("Ajout Visite");
 		mA2.addActionListener(this);
@@ -120,41 +120,18 @@ public class MenuPrincipal extends JFrame implements ActionListener {
 		// TODO Raccord de méthode auto-généré
 		if (evt.getSource() instanceof JMenuItem) {
 			String ChoixOption = evt.getActionCommand();
-
-			if (ChoixOption.equals("Consultation Medecin")) {
-				// Creation d'une sous-fenêtre
-				ouvrirFenetre(new JIFMedecinCons());
-
-			} else if (ChoixOption.equals("Liste Medecins")) {
-				ouvrirFenetre(new JIFMedecinListeDic(this));
-			}
-			else if(ChoixOption.equals("Consultation Medicament")){
-				
-				ouvrirFenetre(new JIFMedicamentCons(null));
+			switch(ChoixOption){
+			case "Consultation Visite": ouvrirFenetre(new JIFVisiteCons(null)); break;
+			case "Ajout Visite": ouvrirFenetre(new JIFVisiteAjout()); break;	
+			case "Ajout Stock Medicament": ouvrirFenetre(new JIFMedicamentAjoutStock()); break;
+			case "Stock Medicament": ouvrirFenetre(new JIFMedicamentStock(this,null)); break;
+			case "Liste Medicament": ouvrirFenetre(new JIFMedicamentListeDic(this)); break;
+			case "Consultation Medicament": ouvrirFenetre(new JIFMedicamentCons(null)); break;
+			case "Liste Medecins": ouvrirFenetre(new JIFMedecinListeDic(this)); break;
+			case "Consultation Medecin": ouvrirFenetre(new JIFMedecinCons()); break;
 			
 			}
-			else if(ChoixOption.equals("Ajout Medicaments")){
-				
-				ouvrirFenetre(new JIFMedicamentAjout());
 			
-			}
-			else if (ChoixOption.equals("Liste Medicament")) {
-					ouvrirFenetre(new JIFMedicamentListeDic(this));
-				}
-			else if (ChoixOption.equals("Stock Medicament")) {
-				ouvrirFenetre(new JIFMedicamentStock(this,null));
-			}
-			else if (ChoixOption.equals("Ajout Stock Medicament")) {
-				ouvrirFenetre(new JIFMedicamentAjoutStock());
-			}
-			else if (ChoixOption.equals("Ajout Visite")) {
-				ouvrirFenetre(new JIFVisiteAjout());
-			}
-			else if(ChoixOption.equals("Consultation Visite") || ChoixOption == "Consultation Visite"){
-			
-				ouvrirFenetre( new JIFVisiteCons(null) );
-				
-			}
 		}
 
 	}

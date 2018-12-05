@@ -93,9 +93,9 @@ public class VisiteDao {
 		ResultSet reqSelection = ConnexionMySql
 				.execReqSelection("select * from VISITE");
 		try {
-			if (reqSelection.next()) {
-				unMedecin = MedecinDao.Rechercher(reqSelection.getString(4));
-				unVisiteur = VisiteurDao.rechercher(reqSelection.getString(5));
+			while(reqSelection.next()) {
+				unMedecin = MedecinDao.Rechercher(reqSelection.getString(5));
+				unVisiteur = VisiteurDao.rechercher(reqSelection.getString(4));
 				list.add(new Visite(reqSelection.getString(1), reqSelection.getDate(2),
 						reqSelection.getString(3), unMedecin, unVisiteur));
 			}
