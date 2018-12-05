@@ -49,7 +49,7 @@ public class JIFVisiteCons extends JInternalFrame {
 		JPanel panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.NORTH);
 		
-		JLabel lblNewLabel = new JLabel("Fiche Medicament");
+		JLabel lblNewLabel = new JLabel("Fiche Visite");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		panel.add(lblNewLabel);
 		

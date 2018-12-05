@@ -123,6 +123,7 @@ public class MenuPrincipal extends JFrame implements ActionListener {
 			switch(ChoixOption){
 			case "Consultation Visite": ouvrirFenetre(new JIFVisiteCons(null)); break;
 			case "Ajout Visite": ouvrirFenetre(new JIFVisiteAjout()); break;	
+			case "Ajout Medicaments": ouvrirFenetre(new JIFMedicamentAjout()); break;
 			case "Ajout Stock Medicament": ouvrirFenetre(new JIFMedicamentAjoutStock()); break;
 			case "Stock Medicament": ouvrirFenetre(new JIFMedicamentStock(this,null)); break;
 			case "Liste Medicament": ouvrirFenetre(new JIFMedicamentListeDic(this)); break;
