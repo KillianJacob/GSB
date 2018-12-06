@@ -9,8 +9,6 @@ public class MainGSB {
 	public static void main(String[] args) {
 		
 		MenuPrincipal menu = new MenuPrincipal();
-		
-		
 
 	}
    
