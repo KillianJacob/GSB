@@ -91,7 +91,7 @@ public class JIFMedicamentAjoutStock extends JInternalFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				try {
-					MedicamentService.AJouterMedicamentStocker(textField.getText().substring(0,textField_2.getText().indexOf("-")), textField_1.getText().substring(0,textField_1.getText().indexOf("-")), textField_2.getText());
+					MedicamentService.AJouterMedicamentStocker(textField.getText().substring(0,textField.getText().indexOf("-")-1), textField_1.getText().substring(0,textField_1.getText().indexOf("-")-1), textField_2.getText());
 					JOptionPane.showMessageDialog(null, "Ajout reussi");
 				} catch (Exception e) {
 					
