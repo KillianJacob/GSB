@@ -19,12 +19,16 @@ import javax.swing.border.Border;
 import gsb.modele.Medecin;
 import gsb.modele.Medicament;
 import gsb.modele.Visiteur;
+import gsb.modele.dao.MedicamentDao;
+import gsb.modele.dao.VisiteurDao;
 import gsb.service.MedecinService;
 import gsb.service.MedicamentService;
 import gsb.service.VisiteurService;
 
 import java.awt.FlowLayout;
 import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
@@ -34,12 +38,15 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 public class JIFMedicamentAjoutStock extends JInternalFrame {
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
+	private JComboBox jbox;
+	private JComboBox jbox2;
 
 	public JIFMedicamentAjoutStock() {
 		
@@ -71,7 +78,20 @@ public class JIFMedicamentAjoutStock extends JInternalFrame {
 		
 		textField_1 = new JTextField();
 		textField_1.setHorizontalAlignment(SwingConstants.CENTER);
-		panel_1.add(textField_1);
+		ArrayList<Medicament> listeMedicament = MedicamentDao.RechercherToutMedicament();
+		
+		ArrayList<String> listeStringMedicament = new ArrayList<String>();
+		
+		for(int i = 0; i < listeMedicament.size();i++){
+			
+			listeStringMedicament.add(listeMedicament.get(i).getDepotLegal() + " - " + listeMedicament.get(i).getNomCommercial());
+			
+		}
+		
+		//jbox = new JComboBox(new StringModel(strings));
+		jbox2 = new JComboBox(listeStringMedicament.toArray());
+		
+		panel_1.add(jbox2);
 		textField_1.setColumns(10);
 		
 		JLabel lblCodevisiteur = new JLabel("Code Visiteur");
@@ -79,8 +99,21 @@ public class JIFMedicamentAjoutStock extends JInternalFrame {
 		panel_1.add(lblCodevisiteur);
 		
 		textField = new JTextField();
+		ArrayList<Visiteur> listeVisiteur = VisiteurDao.rechercherToutVisiteur();
+		
+		ArrayList<String> listeStringVisiteur = new ArrayList<String>();
+		
+		for(int i = 0; i < listeVisiteur.size();i++){
+			
+			listeStringVisiteur.add(listeVisiteur.get(i).getMatricule() + " - " + listeVisiteur.get(i).getNom() + " / " + listeVisiteur.get(i).getPrenom());
+			
+		}
+		
+		//jbox = new JComboBox(new StringModel(strings));
+		jbox = new JComboBox(listeStringVisiteur.toArray());
 		textField.setHorizontalAlignment(SwingConstants.CENTER);
-		panel_1.add(textField);
+		//panel_1.add(textField);
+		panel_1.add(jbox);
 		textField.setColumns(10);
 		
 		JPanel panel_2 = new JPanel();
