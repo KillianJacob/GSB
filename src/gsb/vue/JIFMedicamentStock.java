@@ -18,6 +18,9 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
 import gsb.modele.Medicament;
+import gsb.modele.Visiteur;
+import gsb.modele.dao.MedicamentDao;
+import gsb.modele.dao.VisiteurDao;
 import gsb.service.MedicamentService;
 
 import java.awt.CardLayout;
@@ -25,6 +28,8 @@ import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import java.awt.FlowLayout;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JSeparator;
@@ -39,11 +44,13 @@ public class JIFMedicamentStock extends JInternalFrame {
 	private JTable table;
 	private HashMap<Medicament,Integer> liste;
 	private String[] columnNames = {"Depot legal", "Nom","Effets","Libelle Famille","Quantité"};
-	
+	private JComboBox jbox;
 	
 	public JIFMedicamentStock(MenuPrincipal menu,String matricule) {
 		
 		liste = new HashMap<Medicament,Integer>();
+		
+		ArrayList<Visiteur> listeVisiteur = VisiteurDao.rechercherToutVisiteur();
 		
 		JPanel panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.NORTH);
@@ -62,8 +69,19 @@ public class JIFMedicamentStock extends JInternalFrame {
 		
 		textField = new JTextField();
 		textField.setHorizontalAlignment(SwingConstants.CENTER);
-		panel_1.add(textField);
+		//panel_1.add(textField);
 		textField.setColumns(10);
+		
+		ArrayList<String> listeStringCodeVisiteur = new ArrayList<String>();
+		
+		for(int i = 0; i < listeVisiteur.size();i++){
+			
+			listeStringCodeVisiteur.add(listeVisiteur.get(i).getMatricule());
+			
+		}		
+		
+		jbox = new JComboBox(listeStringCodeVisiteur.toArray());
+		panel_1.add(jbox);
 		
 		JButton btnRechercher = new JButton("Rechercher");
 		panel_1.add(btnRechercher);
@@ -75,7 +93,7 @@ public class JIFMedicamentStock extends JInternalFrame {
 		btnRechercher.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				menu.ouvrirFenetre(new JIFMedicamentStock(menu,textField.getText()));
+				menu.ouvrirFenetre(new JIFMedicamentStock(menu,jbox.getSelectedItem().toString()));
 				
 			}
 		});

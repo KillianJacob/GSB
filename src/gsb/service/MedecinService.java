@@ -6,8 +6,12 @@
  */
 package gsb.service;
 
+import java.util.ArrayList;
+
 import gsb.modele.Medecin;
+import gsb.modele.Medicament;
 import gsb.modele.dao.MedecinDao;
+import gsb.modele.dao.MedicamentDao;
 
 /**
  * @author Isabelle 23 févr. 2015 TODO Pour changer le modèle de ce commentaire
@@ -32,4 +36,11 @@ public class MedecinService {
 		return unMedecin;
 	}
 
+	public static ArrayList<Medecin> RechercherToutMedecins() throws Exception{
+		
+		
+		return MedecinDao.retournerCollectionDesMedecins();
+		
+	}
+	
 }

@@ -129,7 +129,7 @@ public class MenuPrincipal extends JFrame implements ActionListener {
 			case "Liste Medicament": ouvrirFenetre(new JIFMedicamentListeDic(this)); break;
 			case "Consultation Medicament": ouvrirFenetre(new JIFMedicamentCons(null)); break;
 			case "Liste Medecins": ouvrirFenetre(new JIFMedecinListeDic(this)); break;
-			case "Consultation Medecin": ouvrirFenetre(new JIFMedecinCons()); break;
+			case "Consultation Medecin": ouvrirFenetre(new JIFMedecinCons(null)); break;
 			
 			}
 			

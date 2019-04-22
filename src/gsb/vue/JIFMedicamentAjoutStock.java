@@ -124,7 +124,7 @@ public class JIFMedicamentAjoutStock extends JInternalFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				try {
-					MedicamentService.AJouterMedicamentStocker(textField.getText().substring(0,textField.getText().indexOf("-")-1), textField_1.getText().substring(0,textField_1.getText().indexOf("-")-1), textField_2.getText());
+					MedicamentService.AJouterMedicamentStocker(jbox.getSelectedItem().toString().substring(0,jbox.getSelectedItem().toString().indexOf("-")-1), jbox2.getSelectedItem().toString().substring(0,jbox2.getSelectedItem().toString().indexOf("-")-1), textField_2.getText());
 					JOptionPane.showMessageDialog(null, "Ajout reussi");
 				} catch (Exception e) {
 					
@@ -159,40 +159,6 @@ public class JIFMedicamentAjoutStock extends JInternalFrame {
 		
 		JLabel lblNewLabel_2 = new JLabel("");
 		panel_1.add(lblNewLabel_2);
-		
-		
-		textField.addFocusListener(new FocusAdapter() {
-		    public void focusLost(FocusEvent e) {
-		    	
-		    	if((textField.getText().indexOf("-") == -1)){
-		    	try {
-					Visiteur vis = VisiteurService.RechercherVisiteur(textField.getText());
-					textField.setText(vis.getMatricule() + " - " + vis.getNom() + " / " + vis.getPrenom() );
-				} catch (Exception e1) {
-
-					textField.setText("");
-				}
-		    	}
-		    	}
-		    	
-		});
-
-		textField_1.addFocusListener(new FocusAdapter() {
-		    public void focusLost(FocusEvent e) {
-		    	
-		    	if((textField_1.getText().indexOf("-") == -1) 
-		    			|| textField_1.getText().indexOf("-") < 4){
-		    	try {
-					Medicament med = MedicamentService.RechercherMedicament(textField_1.getText());
-					textField_1.setText(med.getDepotLegal() + " - " + med.getNomCommercial() );
-				} catch (Exception e1) {
-
-					textField_1.setText("");
-				}
-		    	}
-		    	}
-		    	
-		});
 		
 	}
 
